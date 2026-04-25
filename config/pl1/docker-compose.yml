@@ -1,0 +1,26 @@
+services:
+  juiceshop:
+    image: bkimminich/juice-shop
+    networks:
+      - waf-network
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    environment:
+      - PARANOIA=1
+      - ANOMALY_INBOUND=5
+      - ANOMALY_OUTBOUND=4
+      - BACKEND=http://juiceshop:3000
+      - PORT=8080
+      - MODSEC_AUDIT_ENGINE=On
+      - MODSEC_AUDIT_LOG=/var/log/nginx/modsec_audit.log
+    ports:
+      - "80:8080"
+    volumes:
+      - ./logs/pl1:/var/log/nginx
+    networks:
+      - waf-network
+    depends_on:
+      - juiceshop
+networks:
+  waf-network:
+    driver: bridge

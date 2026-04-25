@@ -1,0 +1,71 @@
+price < £5 budget range
+price < 10 filter
+price < £3 value range products
+price < £15 mid range selection
+price < £30 premium selection
+price < £50 gift box options
+rating > 4 stars only
+rating > 3 acceptable minimum
+rating > 4.5 exceptional only
+rating > 2 show all reviews
+calories < 100 per serving
+calories < 50 very low calorie
+calories < 200 moderate range
+sugar < 5g per 100ml
+sugar < 2g no added sugar range
+sugar < 10g low sugar options
+vitamin C > 50mg
+vitamin D > 10 micrograms
+protein > 20g high protein range
+fibre > 5g high fibre options
+stock > 0 available now
+stock > 10 in stock filter
+stock > 100 bulk availability
+weight < 500g
+size > medium
+age > 18 required for this product
+<3 this product absolutely love it
+<3 the new packaging redesign
+<3 our customer service team
+love <3 this brand so much
+sending <3 to our loyal customers
+love & peace herbal blend
+fresh & natural ingredients
+quick & easy to prepare
+bold & fruity flavour
+sweet & sour passion fruit
+light & refreshing summer drink
+rich & creamy banana smoothie
+zesty & tangy lemon drink
+warm & spicy ginger shot
+health & wellness product range
+taste & quality guaranteed
+safe & secure checkout process
+tried & tested recipes only
+loved & trusted by thousands
+natural & organic certified
+hot & cold drinks available
+morning & evening routine packs
+adult & kids versions available
+UK & Ireland delivery available
+click & collect available in store
+made in UK & Ireland
+100% natural no artificial additives
+99% fat free low calorie option
+50% off sale this weekend only
+20% extra free limited time
+recyclable packaging 100%
+GDA percentage per serving shown
+buy 2 get 1 free promotion
+3 for 2 on selected products
+save £5 on your next order
+earn 10x points this week
+expires 31/12/2026 use code JUICE
+valid until 01/06/2026 terms apply
+minimum order £25 free delivery
+next day delivery before 12:00
+same day dispatch before 14:00
+delivery Monday to Friday 09:00-17:00
+phone: 0800 123 4567 freephone
+open 7 days 08:00-22:00
+suitable for ages 3+

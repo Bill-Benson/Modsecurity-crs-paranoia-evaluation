@@ -1,0 +1,37 @@
+Config,Rule_ID,Rule_Message,Paranoia_Level,Times_Fired
+PL2,942100,SQL Injection Attack Detected via libinjection,paranoia-level/1,97
+PL2,941100,XSS Attack Detected via libinjection,paranoia-level/1,92
+PL2,941160,NoScript XSS InjectionChecker: HTML Injection,paranoia-level/1,85
+PL2,941120,XSS Filter - Category 2: Event Handler Vector,paranoia-level/1,50
+PL2,941110,XSS Filter - Category 1: Script Tag Vector,paranoia-level/1,30
+PL2,942360,Detects concatenated basic SQL injection and SQLLFI attempts,paranoia-level/1,27
+PL2,942190,Detects MSSQL code execution and information gathering attempts,paranoia-level/1,25
+PL2,941140,XSS Filter - Category 4: Javascript URI Vector,paranoia-level/1,23
+PL2,942160,Detects blind sqli tests using sleep() or benchmark(),paranoia-level/1,17
+PL2,941210,IE XSS Filters - Attack Detected,paranoia-level/1,15
+PL2,941170,NoScript XSS InjectionChecker: Attribute Injection,paranoia-level/1,14
+PL2,932115,Remote Command Execution: Windows Command Injection,paranoia-level/1,8
+PL2,942140,SQL Injection Attack: Common DB Names Detected,paranoia-level/1,8
+PL2,942270,"Looking for basic sql injection. Common attack string for mysql, oracle and others",paranoia-level/1,8
+PL2,942230,Detects conditional SQL injection attempts,paranoia-level/1,6
+PL2,920220,URL Encoding Abuse Attack Attempt,paranoia-level/1,6
+PL2,942280,"Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts",paranoia-level/1,5
+PL2,941130,XSS Filter - Category 3: Attribute Vector,paranoia-level/1,5
+PL2,942170,Detects SQL benchmark and sleep injection attempts including conditional queries,paranoia-level/1,4
+PL2,941180,Node-Validator Blacklist Keywords,paranoia-level/1,4
+PL2,932150,Remote Command Execution: Direct Unix Command Execution,paranoia-level/1,4
+PL2,942350,Detects MySQL UDF injection and other data/structure manipulation attempts,paranoia-level/1,3
+PL2,942500,MySQL in-line comment detected,paranoia-level/1,2
+PL2,934100,Node.js Injection Attack,paranoia-level/1,2
+PL2,930120,OS File Access Attempt,paranoia-level/1,1
+PL2,932160,Remote Command Execution: Unix Shell Code Found,paranoia-level/1,1
+PL2,942240,Detects MySQL charset switch and MSSQL DoS attempts,paranoia-level/1,1
+PL2,941270,IE XSS Filters - Attack Detected,paranoia-level/1,1
+PL2,941230,IE XSS Filters - Attack Detected,paranoia-level/1,1
+PL2,921130,HTTP Response Splitting Attack,paranoia-level/1,1
+PL2,941250,IE XSS Filters - Attack Detected,paranoia-level/1,1
+PL2,933210,PHP Injection Attack: Variable Function Call Found,paranoia-level/1,1
+PL2,933160,PHP Injection Attack: High-Risk PHP Function Call Found,paranoia-level/1,1
+PL2,932105,Remote Command Execution: Unix Command Injection,paranoia-level/1,1
+PL2,932130,Remote Command Execution: Unix Shell Expression Found,paranoia-level/1,1
+PL2,941190,IE XSS Filters - Attack Detected,paranoia-level/1,1

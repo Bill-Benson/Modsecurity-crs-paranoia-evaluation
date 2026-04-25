@@ -1,0 +1,701 @@
+ID,Category,Subcategory,Payload,Status,Result,Latency_ms
+SQLI_1,SQLi,Basic,' OR '1'='1,403,BLOCKED,20.79
+SQLI_2,SQLi,Basic,' OR '1'='1'--,403,BLOCKED,10.52
+SQLI_3,SQLi,Basic,' OR 1=1--,403,BLOCKED,13.85
+SQLI_4,SQLi,Basic,admin'--,403,BLOCKED,12.3
+SQLI_5,SQLi,Basic,' OR 'x'='x,403,BLOCKED,20.83
+SQLI_6,SQLi,Basic,1' OR '1'='1,403,BLOCKED,21.32
+SQLI_7,SQLi,Basic,' OR ''=',403,BLOCKED,24.17
+SQLI_8,SQLi,Basic,1 OR 1=1,403,BLOCKED,47.1
+SQLI_9,SQLi,Basic,' OR 1=1#,403,BLOCKED,39.12
+SQLI_10,SQLi,Basic,""" OR 1=1--",403,BLOCKED,12.97
+SQLI_11,SQLi,Basic,') OR ('1'='1,403,BLOCKED,41.59
+SQLI_12,SQLi,Basic,'; DROP TABLE users--,403,BLOCKED,27.36
+SQLI_13,SQLi,Basic,1'; DROP TABLE users--,403,BLOCKED,44.31
+SQLI_14,SQLi,Basic,' AND 1=1--,403,BLOCKED,37.63
+SQLI_15,SQLi,Basic,' AND 1=2--,403,BLOCKED,28.34
+SQLI_16,SQLi,Basic,' OR 1=1 ORDER BY 1--,403,BLOCKED,25.39
+SQLI_17,SQLi,Basic,' OR 'a'='a,403,BLOCKED,37.37
+SQLI_18,SQLi,Basic,admin'#,500,ALLOWED,54.49
+SQLI_19,SQLi,Basic,1; SELECT * FROM users--,403,BLOCKED,12.71
+SQLI_20,SQLi,Basic,' OR 1=1 LIMIT 1--,403,BLOCKED,22.05
+SQLI_21,SQLi,Boolean,1 AND 1=1,403,BLOCKED,21.86
+SQLI_22,SQLi,Boolean,1 AND 1=2,403,BLOCKED,13.36
+SQLI_23,SQLi,Boolean,1' AND '1'='1,403,BLOCKED,28.42
+SQLI_24,SQLi,Boolean,1' AND '1'='2,403,BLOCKED,16.67
+SQLI_25,SQLi,Boolean,"' AND SUBSTRING(username,1,1)='a'--",403,BLOCKED,17.3
+SQLI_26,SQLi,Boolean,' AND LENGTH(password)>5--,403,BLOCKED,36.05
+SQLI_27,SQLi,Boolean,"1 AND SUBSTRING(@@version,1,1)='5'",403,BLOCKED,35.38
+SQLI_28,SQLi,Boolean,"' AND ASCII(SUBSTRING((SELECT database()),1,1))>64--",403,BLOCKED,15.13
+SQLI_29,SQLi,Boolean,' AND 1=(SELECT 1 FROM users WHERE username='admin')--,403,BLOCKED,23.38
+SQLI_30,SQLi,Boolean,1' AND (SELECT COUNT(*) FROM users)>0-- -,403,BLOCKED,40.38
+SQLI_31,SQLi,Boolean,' AND (SELECT 1 FROM information_schema.tables WHERE table_name='users')=1--,403,BLOCKED,25.16
+SQLI_32,SQLi,Boolean,"' AND IF(1=1,1,2)=1--",403,BLOCKED,23.12
+SQLI_33,SQLi,Boolean,1 AND (SELECT CASE WHEN (1=1) THEN 1 ELSE 0 END)=1,200,ALLOWED,109.66
+SQLI_34,SQLi,Boolean,' AND (SELECT CASE WHEN (username='admin') THEN 1 ELSE 0 END FROM users LIMIT 1),500,ALLOWED,89.93
+SQLI_35,SQLi,Boolean,1 AND EXISTS(SELECT * FROM users WHERE username='admin'),403,BLOCKED,22.34
+SQLI_36,SQLi,Boolean,' AND NOT EXISTS(SELECT * FROM users WHERE username='nonexistent')--,403,BLOCKED,27.46
+SQLI_37,SQLi,Boolean,1' AND (SELECT 1 FROM users WHERE username LIKE 'adm%')=1--,403,BLOCKED,18.15
+SQLI_38,SQLi,Boolean,' AND (SELECT 1)=1--,403,BLOCKED,35.72
+SQLI_39,SQLi,Boolean,' AND 2>1--,403,BLOCKED,33.27
+SQLI_40,SQLi,Boolean,1 AND (SELECT COUNT(*)>0 FROM users),403,BLOCKED,20.51
+SQLI_41,SQLi,Union,' UNION SELECT NULL--,403,BLOCKED,11.83
+SQLI_42,SQLi,Union,"' UNION SELECT NULL,NULL--",403,BLOCKED,26.78
+SQLI_43,SQLi,Union,"' UNION SELECT NULL,NULL,NULL--",403,BLOCKED,22.25
+SQLI_44,SQLi,Union,"' UNION SELECT 1,2,3--",403,BLOCKED,42.89
+SQLI_45,SQLi,Union,"' UNION SELECT username,password,3 FROM users--",403,BLOCKED,29.9
+SQLI_46,SQLi,Union,"' UNION SELECT table_name,2,3 FROM information_schema.tables--",403,BLOCKED,47.97
+SQLI_47,SQLi,Union,"' UNION SELECT column_name,2,3 FROM information_schema.columns WHERE table_name=",403,BLOCKED,31.32
+SQLI_48,SQLi,Union,1 UNION SELECT NULL--,403,BLOCKED,29.5
+SQLI_49,SQLi,Union,1 UNION ALL SELECT NULL--,403,BLOCKED,57.85
+SQLI_50,SQLi,Union,"1' UNION SELECT @@version,NULL--",403,BLOCKED,12.55
+SQLI_51,SQLi,Union,"' UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE",403,BLOCKED,13.43
+SQLI_52,SQLi,Union,"' UNION SELECT 1,group_concat(username,0x3a,password),3 FROM users--",403,BLOCKED,25.32
+SQLI_53,SQLi,Union,"1 UNION SELECT NULL,NULL-- -",403,BLOCKED,45.01
+SQLI_54,SQLi,Union,"' UNION SELECT load_file('/etc/passwd'),2,3--",403,BLOCKED,31.14
+SQLI_55,SQLi,Union,"1 UNION ALL SELECT 1,schema_name,3 FROM information_schema.schemata--",403,BLOCKED,42.33
+SQLI_56,SQLi,Union,"' UNION SELECT NULL,version(),NULL--",403,BLOCKED,26.39
+SQLI_57,SQLi,Union,"' UNION SELECT 1,2,3 FROM information_schema.tables LIMIT 1--",403,BLOCKED,27.42
+SQLI_58,SQLi,Union,"' UNION SELECT user(),2,3--",403,BLOCKED,27.24
+SQLI_59,SQLi,Union,"' UNION SELECT NULL,table_name,NULL FROM information_schema.tables--",403,BLOCKED,44.82
+SQLI_60,SQLi,Union,"1 UNION SELECT 1,2,@@datadir--",403,BLOCKED,30.21
+SQLI_61,SQLi,Time-Based,'; WAITFOR DELAY '0:0:5'--,403,BLOCKED,27.85
+SQLI_62,SQLi,Time-Based,'; IF(1=1) WAITFOR DELAY '0:0:5'--,403,BLOCKED,43.99
+SQLI_63,SQLi,Time-Based,1; WAITFOR DELAY '0:0:5'--,403,BLOCKED,26.6
+SQLI_64,SQLi,Time-Based,'; SELECT SLEEP(5)--,403,BLOCKED,46.66
+SQLI_65,SQLi,Time-Based,1 AND SLEEP(5),403,BLOCKED,38.46
+SQLI_66,SQLi,Time-Based,' AND SLEEP(5)--,403,BLOCKED,26.31
+SQLI_67,SQLi,Time-Based,1' AND SLEEP(5)-- -,403,BLOCKED,23.79
+SQLI_68,SQLi,Time-Based,' OR SLEEP(5)--,403,BLOCKED,34.88
+SQLI_69,SQLi,Time-Based,1 OR SLEEP(5),403,BLOCKED,29.01
+SQLI_70,SQLi,Time-Based,' AND (SELECT * FROM (SELECT(SLEEP(5)))a)--,403,BLOCKED,24.27
+SQLI_71,SQLi,Time-Based,1 AND (SELECT * FROM (SELECT(SLEEP(5)))a)--,403,BLOCKED,39.17
+SQLI_72,SQLi,Time-Based,' OR (SELECT * FROM (SELECT(SLEEP(5)))a)--,403,BLOCKED,28.94
+SQLI_73,SQLi,Time-Based,"' AND IF(1=1,SLEEP(5),0)--",403,BLOCKED,23.51
+SQLI_74,SQLi,Time-Based,"1 AND IF(1=1,SLEEP(5),0)",403,BLOCKED,13.11
+SQLI_75,SQLi,Time-Based,"' OR IF(1=1,SLEEP(5),0)--",403,BLOCKED,23.2
+SQLI_76,SQLi,Time-Based,'; SELECT pg_sleep(5)--,403,BLOCKED,30.99
+SQLI_77,SQLi,Time-Based,1; SELECT pg_sleep(5),403,BLOCKED,37.57
+SQLI_78,SQLi,Time-Based,'; IF(1=1) SELECT SLEEP(5)--,403,BLOCKED,15.05
+SQLI_79,SQLi,Time-Based,'; SELECT 1 WHERE 1=1 AND SLEEP(5)--,403,BLOCKED,33.03
+SQLI_80,SQLi,Time-Based,' AND 1=(SELECT 1 FROM (SELECT SLEEP(5))a)--,403,BLOCKED,36.04
+SQLI_81,SQLi,Obfuscated,'/**/OR/**/1/**/=/**/1--,403,BLOCKED,35.64
+SQLI_82,SQLi,Obfuscated,'%09OR%091=1--,403,BLOCKED,22.32
+SQLI_83,SQLi,Obfuscated,'/*!50000OR*/1=1--,403,BLOCKED,38.11
+SQLI_84,SQLi,Obfuscated,'||1=1--,403,BLOCKED,16.0
+SQLI_85,SQLi,Obfuscated,' OR%0a1=1--,403,BLOCKED,20.66
+SQLI_86,SQLi,Obfuscated,' OR 1 LIKE 1--,403,BLOCKED,32.77
+SQLI_87,SQLi,Obfuscated,' OR 1 REGEXP 1--,403,BLOCKED,31.0
+SQLI_88,SQLi,Obfuscated,' OR 1 BETWEEN 0 AND 2--,403,BLOCKED,39.81
+SQLI_89,SQLi,Obfuscated,"' OR GREATEST(1,0)=1--",403,BLOCKED,27.61
+SQLI_90,SQLi,Obfuscated,"' OR ELT(1,1)=1--",403,BLOCKED,23.62
+SQLI_91,SQLi,Obfuscated,"' UN/**/ION SEL/**/ECT 1,2--",500,ALLOWED,31.19
+SQLI_92,SQLi,Obfuscated,"' /*!UNION*/ /*!SELECT*/ 1,2--",403,BLOCKED,30.24
+SQLI_93,SQLi,Obfuscated,'+OR+1=1--,403,BLOCKED,17.47
+SQLI_94,SQLi,Obfuscated,'%2527OR%25271%3D1--,500,ALLOWED,34.83
+SQLI_95,SQLi,Obfuscated,"' OR COALESCE(NULL,1)=1--",403,BLOCKED,22.72
+SQLI_96,SQLi,Obfuscated,' AND CASE WHEN (1=1) THEN 1 ELSE 0 END=1--,403,BLOCKED,26.08
+SQLI_97,SQLi,Obfuscated,"' OR 2 IN (1,2)--",403,BLOCKED,27.54
+SQLI_98,SQLi,Obfuscated,'||(SELECT 1 FROM dual WHERE 1=1)||',403,BLOCKED,42.79
+SQLI_99,SQLi,Obfuscated,' OR (SELECT 1 FROM (SELECT 1)a)=1--,403,BLOCKED,26.04
+SQLI_100,SQLi,Obfuscated,' OR ASCII(1)=49--,403,BLOCKED,23.24
+XSS_1,XSS,Basic,<script>alert(1)</script>,403,BLOCKED,42.35
+XSS_2,XSS,Basic,<script>alert('XSS')</script>,403,BLOCKED,35.9
+XSS_3,XSS,Basic,<script>alert(document.cookie)</script>,403,BLOCKED,25.31
+XSS_4,XSS,Basic,<img src=x onerror=alert(1)>,403,BLOCKED,31.25
+XSS_5,XSS,Basic,<img src=x onerror=alert('XSS')>,403,BLOCKED,33.15
+XSS_6,XSS,Basic,<svg onload=alert(1)>,403,BLOCKED,26.66
+XSS_7,XSS,Basic,<body onload=alert(1)>,403,BLOCKED,43.86
+XSS_8,XSS,Basic,<iframe src=javascript:alert(1)>,403,BLOCKED,36.94
+XSS_9,XSS,Basic,"""><script>alert(1)</script>",403,BLOCKED,29.14
+XSS_10,XSS,Basic,'><script>alert(1)</script>,403,BLOCKED,24.83
+XSS_11,XSS,Basic,<script>alert(1)//,403,BLOCKED,32.46
+XSS_12,XSS,Basic,<ScRiPt>alert(1)</ScRiPt>,403,BLOCKED,33.53
+XSS_13,XSS,Basic,<SCRIPT>alert(1)</SCRIPT>,403,BLOCKED,11.35
+XSS_14,XSS,Basic,"<script type=""text/javascript"">alert(1)</script>",403,BLOCKED,14.36
+XSS_15,XSS,Basic,"<a href=""javascript:alert(1)"">click</a>",403,BLOCKED,27.31
+XSS_16,XSS,Basic,"<div onmouseover=""alert(1)"">hover</div>",403,BLOCKED,41.46
+XSS_17,XSS,Basic,"<input type=""text"" onfocus=""alert(1)"" autofocus>",403,BLOCKED,27.2
+XSS_18,XSS,Basic,<svg><script>alert(1)</script></svg>,403,BLOCKED,44.74
+XSS_19,XSS,Basic,<details open ontoggle=alert(1)>,403,BLOCKED,35.33
+XSS_20,XSS,Basic,</script><script>alert(1)</script>,403,BLOCKED,29.59
+XSS_21,XSS,Event-Based,<img src=x onerror=alert`1`>,403,BLOCKED,33.97
+XSS_22,XSS,Event-Based,<body onresize=alert(1)>,403,BLOCKED,29.32
+XSS_23,XSS,Event-Based,<body onhashchange=alert(1)><a href=#x>trigger</a>,403,BLOCKED,44.6
+XSS_24,XSS,Event-Based,<body onfullscreenchange=alert(1)>,403,BLOCKED,28.46
+XSS_25,XSS,Event-Based,<input onfocus=alert(1) autofocus>,403,BLOCKED,14.04
+XSS_26,XSS,Event-Based,<select onfocus=alert(1) autofocus>,403,BLOCKED,12.98
+XSS_27,XSS,Event-Based,<textarea onfocus=alert(1) autofocus>,403,BLOCKED,13.52
+XSS_28,XSS,Event-Based,<video onloadstart=alert(1)><source></video>,403,BLOCKED,17.3
+XSS_29,XSS,Event-Based,<audio onloadstart=alert(1)><source></audio>,403,BLOCKED,30.27
+XSS_30,XSS,Event-Based,<details ontoggle=alert(1) open>,403,BLOCKED,14.91
+XSS_31,XSS,Event-Based,<marquee onstart=alert(1)>,403,BLOCKED,10.31
+XSS_32,XSS,Event-Based,<div onmouseenter=alert(1)>hover</div>,403,BLOCKED,35.52
+XSS_33,XSS,Event-Based,<form onsubmit=alert(1)><input type=submit></form>,403,BLOCKED,27.29
+XSS_34,XSS,Event-Based,<button onclick=alert(1)>click</button>,403,BLOCKED,41.99
+XSS_35,XSS,Event-Based,<object onerror=alert(1)>,403,BLOCKED,31.85
+XSS_36,XSS,Event-Based,<body onpageshow=alert(1)>,403,BLOCKED,28.1
+XSS_37,XSS,Event-Based,<svg><animate onbegin=alert(1) attributeName=x dur=1s>,403,BLOCKED,30.37
+XSS_38,XSS,Event-Based,<svg><set onbegin=alert(1) attributeName=x>,403,BLOCKED,42.91
+XSS_39,XSS,Event-Based,<iframe onload=alert(1) src=about:blank>,403,BLOCKED,36.92
+XSS_40,XSS,Event-Based,<link rel=stylesheet onerror=alert(1) href=//doesnotexist.invalid>,403,BLOCKED,32.96
+XSS_41,XSS,Mixed-Evasion,<scr<script>ipt>alert(1)</scr</script>ipt>,403,BLOCKED,29.45
+XSS_42,XSS,Mixed-Evasion,"<img src=""x"" onerror=""&#97;lert(1)"">",403,BLOCKED,32.35
+XSS_43,XSS,Mixed-Evasion,<svg><script>alert&lpar;1&rpar;</script></svg>,403,BLOCKED,22.5
+XSS_44,XSS,Mixed-Evasion,<img src=x onERROR=alert(1)>,403,BLOCKED,17.25
+XSS_45,XSS,Mixed-Evasion,<IMG SRC=x OnErRoR=alert(1)>,403,BLOCKED,44.01
+XSS_46,XSS,Mixed-Evasion,<a href=j&#97;vascript:alert(1)>click</a>,403,BLOCKED,36.28
+XSS_47,XSS,Mixed-Evasion,"<a href=""jav&#x09;ascript:alert(1)"">click</a>",403,BLOCKED,26.22
+XSS_48,XSS,Mixed-Evasion,"<a href=""jav&#x0A;ascript:alert(1)"">click</a>",403,BLOCKED,46.06
+XSS_49,XSS,Mixed-Evasion,"<a href=""jav&#x0D;ascript:alert(1)"">click</a>",403,BLOCKED,31.54
+XSS_50,XSS,Mixed-Evasion,<form><button formaction=javascript:alert(1)>click</button></form>,403,BLOCKED,31.08
+XSS_51,XSS,Mixed-Evasion,<embed src=javascript:alert(1)>,403,BLOCKED,16.71
+XSS_52,XSS,Mixed-Evasion,<svg><a xlink:href=javascript:alert(1)><rect width=100 height=100></a></svg>,403,BLOCKED,10.97
+XSS_53,XSS,Mixed-Evasion,<math href=javascript:alert(1)>click</math>,403,BLOCKED,13.7
+XSS_54,XSS,Mixed-Evasion,"<img """"""><script>alert(1)</script>"">",403,BLOCKED,18.62
+XSS_55,XSS,Mixed-Evasion,<script>alert(1)<!--,403,BLOCKED,31.02
+XSS_56,XSS,Mixed-Evasion,"<!--<img src=""--><img src=x onerror=alert(1)>",403,BLOCKED,40.18
+XSS_57,XSS,Mixed-Evasion,"<meta http-equiv=""refresh"" content=""0;url=javascript:alert(1)"">",403,BLOCKED,49.04
+XSS_58,XSS,Mixed-Evasion,<script>window.onerror=alert;throw 1</script>,403,BLOCKED,17.85
+XSS_59,XSS,Mixed-Evasion,<img src=x onerror=location='javascript:alert(1)'>,403,BLOCKED,19.73
+XSS_60,XSS,Mixed-Evasion,<input autofocus onfocus=alert(1)//>,403,BLOCKED,15.06
+XSS_61,XSS,Obfuscated,<a href=&#x6A;avascript:alert(1)>click</a>,403,BLOCKED,35.94
+XSS_62,XSS,Obfuscated,<a href=jav&#x61;script:alert(1)>click</a>,403,BLOCKED,8.98
+XSS_63,XSS,Obfuscated,<a href=jav&#9;ascript:alert(1)>click</a>,403,BLOCKED,39.99
+XSS_64,XSS,Obfuscated,<a href=jav&#10;ascript:alert(1)>click</a>,403,BLOCKED,34.17
+XSS_65,XSS,Obfuscated,<a href=jav&#12;ascript:alert(1)>click</a>,403,BLOCKED,34.74
+XSS_66,XSS,Obfuscated,<img src=x onerror=&#x61;lert(1)>,403,BLOCKED,24.23
+XSS_67,XSS,Obfuscated,<img src=x onerror=&#0000097;lert(1)>,403,BLOCKED,31.57
+XSS_68,XSS,Obfuscated,<img src=x onerror=alert&#x28;1&#x29;>,403,BLOCKED,36.51
+XSS_69,XSS,Obfuscated,<img src=x onerror=alert(1)	>,403,BLOCKED,88.24
+XSS_70,XSS,Obfuscated,<img src=`x` onerror=`alert(1)`>,403,BLOCKED,23.33
+XSS_71,XSS,Obfuscated,<script>//%0aalert(1)</script>,403,BLOCKED,21.57
+XSS_72,XSS,Obfuscated,<script>alert(1//)</script>,403,BLOCKED,22.39
+XSS_73,XSS,Obfuscated,<script>alert`1`</script>,403,BLOCKED,38.05
+XSS_74,XSS,Obfuscated,<iframe src=jAvAsCrIpT:alert(1)>,403,BLOCKED,35.3
+XSS_75,XSS,Obfuscated,<img src=x onerror=window.alert(1)>,403,BLOCKED,37.27
+XSS_76,XSS,Obfuscated,<img src=x onerror=(alert)(1)>,403,BLOCKED,40.34
+XSS_77,XSS,Obfuscated,<svg onload=alert&#40;1&#41;>,403,BLOCKED,31.61
+XSS_78,XSS,Obfuscated,<script>/*%0a*/alert(1)</script>,403,BLOCKED,36.3
+XSS_79,XSS,Obfuscated,%2522%253E%253Cscript%253Ealert(1)%253C%252Fscript%253E,200,ALLOWED,37.25
+XSS_80,XSS,Obfuscated,<img src=x onerror=eval('\x61\x6c\x65\x72\x74\x28\x31\x29')>,403,BLOCKED,27.07
+XSS_81,XSS,Advanced,<math><mtext></table><img src=x onerror=alert(1)>,403,BLOCKED,24.54
+XSS_82,XSS,Advanced,"<noscript><p title=""</noscript><img src=x onerror=alert(1)>"">",403,BLOCKED,44.92
+XSS_83,XSS,Advanced,<svg><desc><![CDATA[</desc><script>alert(1)</script>]]>,403,BLOCKED,26.1
+XSS_84,XSS,Advanced,"<form><math><mtext></form><form><mglyph><svg><mtext><textarea><path id=""</textar",403,BLOCKED,43.43
+XSS_85,XSS,Advanced,"<svg><foreignObject><div xmlns=""http://www.w3.org/1999/xhtml""><script>alert(1)</",403,BLOCKED,20.22
+XSS_86,XSS,Advanced,"<xmp><p title=""</xmp><img src=x onerror=alert(1)>"">",403,BLOCKED,13.93
+XSS_87,XSS,Advanced,<template id=x><script>alert(1)</script></template><script>document.body.appendC,403,BLOCKED,21.84
+XSS_88,XSS,Advanced,"<iframe srcdoc=""&lt;script&gt;top.alert(1)&lt;/script&gt;"">",403,BLOCKED,21.16
+XSS_89,XSS,Advanced,<script>with(window)alert(1)</script>,403,BLOCKED,24.34
+XSS_90,XSS,Advanced,<svg><set attributeName=onload to=alert(1)>,403,BLOCKED,35.6
+XSS_91,XSS,Advanced,<svg><animatetransform onbegin=alert(1) attributeName=transform>,403,BLOCKED,19.49
+XSS_92,XSS,Advanced,"<script>Object.defineProperty(window,""x"",{get:function(){alert(1)}});x</script>",403,BLOCKED,13.18
+XSS_93,XSS,Advanced,<frameset onload=alert(1)>,403,BLOCKED,29.7
+XSS_94,XSS,Advanced,<input name=attributes><form><button formaction=javascript:alert(1)>,403,BLOCKED,22.21
+XSS_95,XSS,Advanced,<script>({get x(){alert(1)}}).x</script>,403,BLOCKED,42.46
+XSS_96,XSS,Advanced,"<script>Function.prototype.call.call(alert,window,1)</script>",403,BLOCKED,27.38
+XSS_97,XSS,Advanced,"<script>Proxy&&new Proxy({},{get(){alert(1)}})+''</script>",403,BLOCKED,14.26
+XSS_98,XSS,Advanced,"<style>@keyframes x{}</style><p style=""animation:x 1s"" onanimationstart=alert(1)",403,BLOCKED,9.84
+XSS_99,XSS,Advanced,<details open ontoggle=alert(1) id=x><summary>x</summary></details>,403,BLOCKED,29.27
+XSS_100,XSS,Advanced,"<svg><use href=""data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg",403,BLOCKED,39.42
+BENIGN_1,Benign,SQL-Keyword,select your preferred juice flavour,200,ALLOWED,120.14
+BENIGN_2,Benign,SQL-Keyword,select from our range of smoothies,403,BLOCKED,35.72
+BENIGN_3,Benign,SQL-Keyword,select size small medium or large,200,ALLOWED,132.18
+BENIGN_4,Benign,SQL-Keyword,select delivery or collection,200,ALLOWED,97.65
+BENIGN_5,Benign,SQL-Keyword,select all natural ingredients list,200,ALLOWED,100.48
+BENIGN_6,Benign,SQL-Keyword,select premium or standard membership,200,ALLOWED,59.86
+BENIGN_7,Benign,SQL-Keyword,select gift wrap option at checkout,200,ALLOWED,98.02
+BENIGN_8,Benign,SQL-Keyword,select your nearest store location,200,ALLOWED,82.33
+BENIGN_9,Benign,SQL-Keyword,select payment method card or paypal,200,ALLOWED,72.53
+BENIGN_10,Benign,SQL-Keyword,union of tropical fruit flavours,200,ALLOWED,45.88
+BENIGN_11,Benign,SQL-Keyword,union blend of apple and mango,200,ALLOWED,77.6
+BENIGN_12,Benign,SQL-Keyword,union of fresh pressed ingredients,200,ALLOWED,89.86
+BENIGN_13,Benign,SQL-Keyword,union of health benefits in one drink,200,ALLOWED,78.03
+BENIGN_14,Benign,SQL-Keyword,union blend citrus and berry,200,ALLOWED,67.35
+BENIGN_15,Benign,SQL-Keyword,union of vitamins A B C and D,200,ALLOWED,80.11
+BENIGN_16,Benign,SQL-Keyword,union membership discount applied,200,ALLOWED,84.75
+BENIGN_17,Benign,SQL-Keyword,drop the price on bulk orders,200,ALLOWED,60.62
+BENIGN_18,Benign,SQL-Keyword,drop shipping available on all orders,200,ALLOWED,71.23
+BENIGN_19,Benign,SQL-Keyword,drop in calories compared to soda,200,ALLOWED,33.49
+BENIGN_20,Benign,SQL-Keyword,drop off point for returns,200,ALLOWED,44.94
+BENIGN_21,Benign,SQL-Keyword,drop size sample available,200,ALLOWED,34.62
+BENIGN_22,Benign,SQL-Keyword,drop shipping to EU countries,200,ALLOWED,71.27
+BENIGN_23,Benign,SQL-Keyword,insert your discount code here,200,ALLOWED,75.49
+BENIGN_24,Benign,SQL-Keyword,insert name for personalised bottle,200,ALLOWED,71.23
+BENIGN_25,Benign,SQL-Keyword,insert promotional code at checkout,200,ALLOWED,93.61
+BENIGN_26,Benign,SQL-Keyword,insert loyalty card number here,200,ALLOWED,38.08
+BENIGN_27,Benign,SQL-Keyword,insert delivery instructions below,200,ALLOWED,57.72
+BENIGN_28,Benign,SQL-Keyword,insert gift message up to 100 chars,200,ALLOWED,67.51
+BENIGN_29,Benign,SQL-Keyword,delete my saved address,200,ALLOWED,68.68
+BENIGN_30,Benign,SQL-Keyword,delete account request,200,ALLOWED,64.66
+BENIGN_31,Benign,SQL-Keyword,delete saved payment method,200,ALLOWED,69.38
+BENIGN_32,Benign,SQL-Keyword,delete old delivery address,200,ALLOWED,38.74
+BENIGN_33,Benign,SQL-Keyword,delete my review request,200,ALLOWED,44.15
+BENIGN_34,Benign,SQL-Keyword,delete wishlist item,200,ALLOWED,51.2
+BENIGN_35,Benign,SQL-Keyword,update my delivery preferences,200,ALLOWED,76.61
+BENIGN_36,Benign,SQL-Keyword,update billing address,200,ALLOWED,67.98
+BENIGN_37,Benign,SQL-Keyword,update my email preferences,200,ALLOWED,69.13
+BENIGN_38,Benign,SQL-Keyword,update subscription frequency,200,ALLOWED,62.16
+BENIGN_39,Benign,SQL-Keyword,update payment details securely,200,ALLOWED,61.6
+BENIGN_40,Benign,SQL-Keyword,update profile information,200,ALLOWED,69.13
+BENIGN_41,Benign,SQL-Keyword,where to find organic juice near me,200,ALLOWED,53.29
+BENIGN_42,Benign,SQL-Keyword,where is my order,200,ALLOWED,55.62
+BENIGN_43,Benign,SQL-Keyword,where do you source your fruit,200,ALLOWED,58.63
+BENIGN_44,Benign,SQL-Keyword,where can I find nutrition info,200,ALLOWED,52.92
+BENIGN_45,Benign,SQL-Keyword,where is my refund,200,ALLOWED,67.23
+BENIGN_46,Benign,SQL-Keyword,where do you deliver to,200,ALLOWED,64.79
+BENIGN_47,Benign,SQL-Keyword,where can I recycle packaging,200,ALLOWED,58.2
+BENIGN_48,Benign,SQL-Keyword,having trouble with my login,200,ALLOWED,57.2
+BENIGN_49,Benign,SQL-Keyword,having issues with checkout,200,ALLOWED,55.37
+BENIGN_50,Benign,SQL-Keyword,having a great experience so far,200,ALLOWED,46.91
+BENIGN_51,Benign,SQL-Keyword,having difficulty applying voucher,200,ALLOWED,36.38
+BENIGN_52,Benign,SQL-Keyword,having second thoughts about order,200,ALLOWED,30.07
+BENIGN_53,Benign,SQL-Keyword,having the tropical blend delivered,200,ALLOWED,29.12
+BENIGN_54,Benign,SQL-Keyword,order by price low to high,200,ALLOWED,39.06
+BENIGN_55,Benign,SQL-Keyword,order by rating,200,ALLOWED,87.64
+BENIGN_56,Benign,SQL-Keyword,order by newest arrivals,200,ALLOWED,44.27
+BENIGN_57,Benign,SQL-Keyword,order by expiry date soonest first,200,ALLOWED,51.74
+BENIGN_58,Benign,SQL-Keyword,order by popularity this week,200,ALLOWED,58.12
+BENIGN_59,Benign,SQL-Keyword,order by alphabetical product name,200,ALLOWED,47.95
+BENIGN_60,Benign,SQL-Keyword,order by relevance search result,200,ALLOWED,40.6
+BENIGN_61,Benign,SQL-Keyword,group by category,200,ALLOWED,62.98
+BENIGN_62,Benign,SQL-Keyword,group by subscription type,200,ALLOWED,46.78
+BENIGN_63,Benign,SQL-Keyword,group by delivery frequency,200,ALLOWED,59.84
+BENIGN_64,Benign,SQL-Keyword,group by flavour category,200,ALLOWED,71.4
+BENIGN_65,Benign,SQL-Keyword,group discount for 10 or more,200,ALLOWED,52.36
+BENIGN_66,Benign,SQL-Keyword,null value in discount field,200,ALLOWED,43.08
+BENIGN_67,Benign,SQL-Keyword,and more flavours coming soon,200,ALLOWED,72.11
+BENIGN_68,Benign,SQL-Keyword,and free delivery on orders over 20,200,ALLOWED,39.16
+BENIGN_69,Benign,SQL-Keyword,or call us on 01234 567890,200,ALLOWED,47.13
+BENIGN_70,Benign,SQL-Keyword,or visit our store,200,ALLOWED,63.44
+BENIGN_71,Benign,SQL-Keyword,1 litre bottle of apple juice,200,ALLOWED,52.58
+BENIGN_72,Benign,SQL-Keyword,1=1 promotion buy one get one free,200,ALLOWED,48.63
+BENIGN_73,Benign,SQL-Keyword,like for like price match guarantee,200,ALLOWED,27.57
+BENIGN_74,Benign,SQL-Keyword,like minded health enthusiasts,200,ALLOWED,29.59
+BENIGN_75,Benign,SQL-Keyword,like for like returns policy,200,ALLOWED,50.33
+BENIGN_76,Benign,SQL-Keyword,like us on social media,200,ALLOWED,39.77
+BENIGN_77,Benign,SQL-Keyword,like what you see subscribe now,200,ALLOWED,68.77
+BENIGN_78,Benign,SQL-Keyword,from farm to bottle fresh juice,200,ALLOWED,64.22
+BENIGN_79,Benign,SQL-Keyword,from our organic range,200,ALLOWED,56.42
+BENIGN_80,Benign,SQL-Keyword,from concentrate vs not from concentrate,200,ALLOWED,37.33
+BENIGN_81,Benign,SQL-Keyword,from our farm in Somerset,200,ALLOWED,52.72
+BENIGN_82,Benign,SQL-Keyword,from seed to bottle process,200,ALLOWED,58.0
+BENIGN_83,Benign,SQL-Keyword,from local UK suppliers only,200,ALLOWED,34.15
+BENIGN_84,Benign,SQL-Keyword,join our loyalty program,200,ALLOWED,32.12
+BENIGN_85,Benign,SQL-Keyword,inner join newsletter for offers,200,ALLOWED,59.36
+BENIGN_86,Benign,SQL-Keyword,join waitlist for new product,200,ALLOWED,47.75
+BENIGN_87,Benign,SQL-Keyword,join referral scheme earn rewards,200,ALLOWED,37.61
+BENIGN_88,Benign,SQL-Keyword,join corporate wellness programme,200,ALLOWED,62.81
+BENIGN_89,Benign,SQL-Keyword,join our tasting panel,200,ALLOWED,79.91
+BENIGN_90,Benign,SQL-Keyword,table of nutritional information,200,ALLOWED,63.43
+BENIGN_91,Benign,SQL-Keyword,column of the week feature,200,ALLOWED,54.62
+BENIGN_92,Benign,SQL-Keyword,table spoon of honey added,200,ALLOWED,61.2
+BENIGN_93,Benign,SQL-Keyword,table of contents product guide,200,ALLOWED,61.19
+BENIGN_94,Benign,SQL-Keyword,table booking for juice bar,200,ALLOWED,61.55
+BENIGN_95,Benign,SQL-Keyword,table service available in store,200,ALLOWED,77.74
+BENIGN_96,Benign,SQL-Keyword,column inches press coverage,200,ALLOWED,44.47
+BENIGN_97,Benign,SQL-Keyword,column of best sellers this month,200,ALLOWED,69.6
+BENIGN_98,Benign,SQL-Keyword,exec chef recommended juices,403,BLOCKED,24.13
+BENIGN_99,Benign,SQL-Keyword,cast iron cold press method,200,ALLOWED,39.83
+BENIGN_100,Benign,SQL-Keyword,cast of characters in our story,200,ALLOWED,30.87
+BENIGN_101,Benign,SQL-Keyword,cast iron guarantee on freshness,200,ALLOWED,35.42
+BENIGN_102,Benign,SQL-Keyword,sleep aid chamomile and honey blend,200,ALLOWED,55.49
+BENIGN_103,Benign,SQL-Keyword,sleep support herbal drink,200,ALLOWED,67.05
+BENIGN_104,Benign,SQL-Keyword,sleep cycle support night blend,200,ALLOWED,37.37
+BENIGN_105,Benign,SQL-Keyword,sleep tight bedtime berry drink,200,ALLOWED,63.04
+BENIGN_106,Benign,SQL-Keyword,benchmark quality certified organic,200,ALLOWED,47.51
+BENIGN_107,Benign,SQL-Keyword,benchmark testing our new recipes,200,ALLOWED,60.95
+BENIGN_108,Benign,SQL-Keyword,benchmark against competitors done,200,ALLOWED,49.82
+BENIGN_109,Benign,SQL-Keyword,version 2 of our classic recipe,200,ALLOWED,73.73
+BENIGN_110,Benign,SQL-Keyword,version history of our recipes,200,ALLOWED,47.6
+BENIGN_111,Benign,SQL-Keyword,version 3 improved formula,200,ALLOWED,49.81
+BENIGN_112,Benign,SQL-Keyword,char grilled pineapple smoothie,200,ALLOWED,63.69
+BENIGN_113,Benign,SQL-Keyword,char broiled pineapple flavour,200,ALLOWED,56.31
+BENIGN_114,Benign,SQL-Keyword,char limit for review 500 words,200,ALLOWED,36.6
+BENIGN_115,Benign,SQL-Keyword,ascii art on our packaging,200,ALLOWED,64.93
+BENIGN_116,Benign,SQL-Keyword,ascii characters in product codes,200,ALLOWED,62.13
+BENIGN_117,Benign,SQL-Keyword,ascii sorted product catalogue,200,ALLOWED,38.64
+BENIGN_118,Benign,SQL-Keyword,hex colour codes for our branding,200,ALLOWED,44.39
+BENIGN_119,Benign,SQL-Keyword,hex code for our brand colour,200,ALLOWED,57.94
+BENIGN_120,Benign,SQL-Keyword,hex packaging design award,200,ALLOWED,43.06
+BENIGN_121,Benign,SQL-Keyword,information about allergens,200,ALLOWED,51.05
+BENIGN_122,Benign,SQL-Keyword,information security policy,200,ALLOWED,40.83
+BENIGN_123,Benign,SQL-Keyword,information commissioner registered,200,ALLOWED,53.7
+BENIGN_124,Benign,SQL-Keyword,schema for our loyalty points,200,ALLOWED,36.03
+BENIGN_125,Benign,SQL-Keyword,schema therapy wellness approach,200,ALLOWED,45.51
+BENIGN_126,Benign,SQL-Keyword,schema for product data feed,200,ALLOWED,67.7
+BENIGN_127,Benign,SQL-Keyword,database of nutritional values,200,ALLOWED,34.52
+BENIGN_128,Benign,SQL-Keyword,database of stockists nationwide,200,ALLOWED,87.5
+BENIGN_129,Benign,SQL-Keyword,database error please try again,200,ALLOWED,54.91
+BENIGN_130,Benign,Scripting-Keyword,script for making cold press juice,200,ALLOWED,37.79
+BENIGN_131,Benign,Scripting-Keyword,javascript free website version,200,ALLOWED,44.99
+BENIGN_132,Benign,Scripting-Keyword,alert me when back in stock,200,ALLOWED,53.63
+BENIGN_133,Benign,Scripting-Keyword,alert me to new offers,200,ALLOWED,53.23
+BENIGN_134,Benign,Scripting-Keyword,alert level green freshness rating,200,ALLOWED,68.88
+BENIGN_135,Benign,Scripting-Keyword,alert subscribers to flash sale,200,ALLOWED,44.85
+BENIGN_136,Benign,Scripting-Keyword,alert preference set to email,200,ALLOWED,60.42
+BENIGN_137,Benign,Scripting-Keyword,alert me when price drops,200,ALLOWED,20.47
+BENIGN_138,Benign,Scripting-Keyword,prompt delivery guaranteed,200,ALLOWED,75.21
+BENIGN_139,Benign,Scripting-Keyword,prompt customer service,200,ALLOWED,48.61
+BENIGN_140,Benign,Scripting-Keyword,prompt response from support team,200,ALLOWED,35.49
+BENIGN_141,Benign,Scripting-Keyword,prompt dispatch within 24 hours,200,ALLOWED,58.26
+BENIGN_142,Benign,Scripting-Keyword,prompt refund within 5 days,200,ALLOWED,60.86
+BENIGN_143,Benign,Scripting-Keyword,confirm my order please,200,ALLOWED,45.43
+BENIGN_144,Benign,Scripting-Keyword,confirm subscription to newsletter,200,ALLOWED,32.06
+BENIGN_145,Benign,Scripting-Keyword,confirm email address to proceed,200,ALLOWED,33.42
+BENIGN_146,Benign,Scripting-Keyword,confirm age over 18 to purchase,200,ALLOWED,29.13
+BENIGN_147,Benign,Scripting-Keyword,confirm terms and conditions read,200,ALLOWED,51.85
+BENIGN_148,Benign,Scripting-Keyword,eval the best juice for you,403,BLOCKED,17.97
+BENIGN_149,Benign,Scripting-Keyword,eval your health goals with us,403,BLOCKED,14.05
+BENIGN_150,Benign,Scripting-Keyword,eval nutrition needs calculator,403,BLOCKED,23.58
+BENIGN_151,Benign,Scripting-Keyword,function of antioxidants explained,200,ALLOWED,63.53
+BENIGN_152,Benign,Scripting-Keyword,function as a meal replacement,200,ALLOWED,60.65
+BENIGN_153,Benign,Scripting-Keyword,function of enzymes in digestion,200,ALLOWED,60.35
+BENIGN_154,Benign,Scripting-Keyword,document your daily juice intake,200,ALLOWED,62.1
+BENIGN_155,Benign,Scripting-Keyword,document upload for trade account,200,ALLOWED,36.67
+BENIGN_156,Benign,Scripting-Keyword,document proof of address required,200,ALLOWED,49.12
+BENIGN_157,Benign,Scripting-Keyword,window of freshness guaranteed,200,ALLOWED,47.7
+BENIGN_158,Benign,Scripting-Keyword,window delivery slot available,200,ALLOWED,38.59
+BENIGN_159,Benign,Scripting-Keyword,window of time for fresh delivery,200,ALLOWED,134.97
+BENIGN_160,Benign,Scripting-Keyword,on error contact customer support,200,ALLOWED,42.14
+BENIGN_161,Benign,Scripting-Keyword,on error please refresh the page,200,ALLOWED,29.23
+BENIGN_162,Benign,Scripting-Keyword,on load special offer applies,200,ALLOWED,47.08
+BENIGN_163,Benign,Scripting-Keyword,on load discount automatically applied,200,ALLOWED,55.37
+BENIGN_164,Benign,Scripting-Keyword,src of our organic fruit is local,200,ALLOWED,79.55
+BENIGN_165,Benign,Scripting-Keyword,src locally sourced ingredients,200,ALLOWED,74.5
+BENIGN_166,Benign,Scripting-Keyword,href to our full product catalogue,200,ALLOWED,54.9
+BENIGN_167,Benign,Scripting-Keyword,href link to full ingredients list,200,ALLOWED,36.72
+BENIGN_168,Benign,Scripting-Keyword,style of packaging eco friendly,200,ALLOWED,35.15
+BENIGN_169,Benign,Scripting-Keyword,style guide for our brand,200,ALLOWED,47.99
+BENIGN_170,Benign,Scripting-Keyword,style of bottle redesigned 2026,200,ALLOWED,28.09
+BENIGN_171,Benign,Scripting-Keyword,class of superfood ingredients,200,ALLOWED,46.48
+BENIGN_172,Benign,Scripting-Keyword,class leading customer service,200,ALLOWED,59.74
+BENIGN_173,Benign,Scripting-Keyword,class of 2026 new flavour launch,200,ALLOWED,63.64
+BENIGN_174,Benign,Scripting-Keyword,div our range into categories,200,ALLOWED,58.74
+BENIGN_175,Benign,Scripting-Keyword,div iding our range into bundles,200,ALLOWED,35.8
+BENIGN_176,Benign,Scripting-Keyword,span of flavours available,200,ALLOWED,67.22
+BENIGN_177,Benign,Scripting-Keyword,span ish citrus orange variety,200,ALLOWED,69.24
+BENIGN_178,Benign,Special-Chars,price < £5 budget range,200,ALLOWED,27.34
+BENIGN_179,Benign,Special-Chars,price < 10 filter,200,ALLOWED,34.5
+BENIGN_180,Benign,Special-Chars,price < £3 value range products,200,ALLOWED,46.87
+BENIGN_181,Benign,Special-Chars,price < £15 mid range selection,200,ALLOWED,75.66
+BENIGN_182,Benign,Special-Chars,price < £30 premium selection,200,ALLOWED,63.41
+BENIGN_183,Benign,Special-Chars,price < £50 gift box options,200,ALLOWED,66.25
+BENIGN_184,Benign,Special-Chars,rating > 4 stars only,200,ALLOWED,55.33
+BENIGN_185,Benign,Special-Chars,rating > 3 acceptable minimum,200,ALLOWED,54.57
+BENIGN_186,Benign,Special-Chars,rating > 4.5 exceptional only,200,ALLOWED,64.76
+BENIGN_187,Benign,Special-Chars,rating > 2 show all reviews,200,ALLOWED,67.19
+BENIGN_188,Benign,Special-Chars,calories < 100 per serving,200,ALLOWED,53.59
+BENIGN_189,Benign,Special-Chars,calories < 50 very low calorie,200,ALLOWED,52.93
+BENIGN_190,Benign,Special-Chars,calories < 200 moderate range,200,ALLOWED,59.05
+BENIGN_191,Benign,Special-Chars,sugar < 5g per 100ml,200,ALLOWED,35.05
+BENIGN_192,Benign,Special-Chars,sugar < 2g no added sugar range,200,ALLOWED,40.36
+BENIGN_193,Benign,Special-Chars,sugar < 10g low sugar options,200,ALLOWED,35.34
+BENIGN_194,Benign,Special-Chars,vitamin C > 50mg,200,ALLOWED,44.68
+BENIGN_195,Benign,Special-Chars,vitamin D > 10 micrograms,200,ALLOWED,43.75
+BENIGN_196,Benign,Special-Chars,protein > 20g high protein range,200,ALLOWED,68.14
+BENIGN_197,Benign,Special-Chars,fibre > 5g high fibre options,200,ALLOWED,68.29
+BENIGN_198,Benign,Special-Chars,stock > 0 available now,200,ALLOWED,27.08
+BENIGN_199,Benign,Special-Chars,stock > 10 in stock filter,200,ALLOWED,57.53
+BENIGN_200,Benign,Special-Chars,stock > 100 bulk availability,200,ALLOWED,57.28
+BENIGN_201,Benign,Special-Chars,weight < 500g,200,ALLOWED,35.92
+BENIGN_202,Benign,Special-Chars,size > medium,200,ALLOWED,47.9
+BENIGN_203,Benign,Special-Chars,age > 18 required for this product,200,ALLOWED,65.78
+BENIGN_204,Benign,Special-Chars,<3 this product absolutely love it,200,ALLOWED,41.04
+BENIGN_205,Benign,Special-Chars,<3 the new packaging redesign,200,ALLOWED,29.73
+BENIGN_206,Benign,Special-Chars,<3 our customer service team,200,ALLOWED,48.28
+BENIGN_207,Benign,Special-Chars,love <3 this brand so much,200,ALLOWED,57.57
+BENIGN_208,Benign,Special-Chars,sending <3 to our loyal customers,200,ALLOWED,34.05
+BENIGN_209,Benign,Special-Chars,love & peace herbal blend,200,ALLOWED,48.72
+BENIGN_210,Benign,Special-Chars,fresh & natural ingredients,200,ALLOWED,48.42
+BENIGN_211,Benign,Special-Chars,quick & easy to prepare,200,ALLOWED,58.3
+BENIGN_212,Benign,Special-Chars,bold & fruity flavour,200,ALLOWED,45.04
+BENIGN_213,Benign,Special-Chars,sweet & sour passion fruit,200,ALLOWED,47.51
+BENIGN_214,Benign,Special-Chars,light & refreshing summer drink,200,ALLOWED,41.07
+BENIGN_215,Benign,Special-Chars,rich & creamy banana smoothie,200,ALLOWED,52.95
+BENIGN_216,Benign,Special-Chars,zesty & tangy lemon drink,200,ALLOWED,68.72
+BENIGN_217,Benign,Special-Chars,warm & spicy ginger shot,200,ALLOWED,50.15
+BENIGN_218,Benign,Special-Chars,health & wellness product range,200,ALLOWED,50.39
+BENIGN_219,Benign,Special-Chars,taste & quality guaranteed,200,ALLOWED,59.8
+BENIGN_220,Benign,Special-Chars,safe & secure checkout process,200,ALLOWED,97.63
+BENIGN_221,Benign,Special-Chars,tried & tested recipes only,200,ALLOWED,68.08
+BENIGN_222,Benign,Special-Chars,loved & trusted by thousands,200,ALLOWED,59.9
+BENIGN_223,Benign,Special-Chars,natural & organic certified,200,ALLOWED,52.35
+BENIGN_224,Benign,Special-Chars,hot & cold drinks available,200,ALLOWED,56.86
+BENIGN_225,Benign,Special-Chars,morning & evening routine packs,200,ALLOWED,41.44
+BENIGN_226,Benign,Special-Chars,adult & kids versions available,200,ALLOWED,34.74
+BENIGN_227,Benign,Special-Chars,UK & Ireland delivery available,200,ALLOWED,34.2
+BENIGN_228,Benign,Special-Chars,click & collect available in store,200,ALLOWED,45.78
+BENIGN_229,Benign,Special-Chars,made in UK & Ireland,200,ALLOWED,30.13
+BENIGN_230,Benign,Special-Chars,100% natural no artificial additives,200,ALLOWED,35.56
+BENIGN_231,Benign,Special-Chars,99% fat free low calorie option,200,ALLOWED,58.93
+BENIGN_232,Benign,Special-Chars,50% off sale this weekend only,200,ALLOWED,72.02
+BENIGN_233,Benign,Special-Chars,20% extra free limited time,200,ALLOWED,48.61
+BENIGN_234,Benign,Special-Chars,recyclable packaging 100%,200,ALLOWED,58.39
+BENIGN_235,Benign,Special-Chars,GDA percentage per serving shown,200,ALLOWED,40.78
+BENIGN_236,Benign,Special-Chars,buy 2 get 1 free promotion,200,ALLOWED,35.83
+BENIGN_237,Benign,Special-Chars,3 for 2 on selected products,200,ALLOWED,60.16
+BENIGN_238,Benign,Special-Chars,save £5 on your next order,200,ALLOWED,60.58
+BENIGN_239,Benign,Special-Chars,earn 10x points this week,200,ALLOWED,58.65
+BENIGN_240,Benign,Special-Chars,expires 31/12/2026 use code JUICE,200,ALLOWED,54.28
+BENIGN_241,Benign,Special-Chars,valid until 01/06/2026 terms apply,200,ALLOWED,64.85
+BENIGN_242,Benign,Special-Chars,minimum order £25 free delivery,200,ALLOWED,74.24
+BENIGN_243,Benign,Special-Chars,next day delivery before 12:00,200,ALLOWED,59.42
+BENIGN_244,Benign,Special-Chars,same day dispatch before 14:00,200,ALLOWED,52.88
+BENIGN_245,Benign,Special-Chars,delivery Monday to Friday 09:00-17:00,200,ALLOWED,52.01
+BENIGN_246,Benign,Special-Chars,phone: 0800 123 4567 freephone,200,ALLOWED,59.16
+BENIGN_247,Benign,Special-Chars,open 7 days 08:00-22:00,200,ALLOWED,27.43
+BENIGN_248,Benign,Special-Chars,suitable for ages 3+,200,ALLOWED,43.25
+BENIGN_249,Benign,Neutral,apple juice 1 litre,200,ALLOWED,64.8
+BENIGN_250,Benign,Neutral,mango smoothie 500ml,200,ALLOWED,51.59
+BENIGN_251,Benign,Neutral,orange juice freshly squeezed,200,ALLOWED,74.77
+BENIGN_252,Benign,Neutral,pineapple coconut blend,200,ALLOWED,54.6
+BENIGN_253,Benign,Neutral,green smoothie spinach kale,200,ALLOWED,79.76
+BENIGN_254,Benign,Neutral,berry mix antioxidant blend,200,ALLOWED,71.25
+BENIGN_255,Benign,Neutral,ginger lemon shot 60ml,200,ALLOWED,60.34
+BENIGN_256,Benign,Neutral,watermelon juice summer special,200,ALLOWED,52.7
+BENIGN_257,Benign,Neutral,pomegranate juice 750ml,200,ALLOWED,63.21
+BENIGN_258,Benign,Neutral,beetroot carrot ginger juice,200,ALLOWED,38.29
+BENIGN_259,Benign,Neutral,cold pressed juice subscription,200,ALLOWED,45.15
+BENIGN_260,Benign,Neutral,juice cleanse 3 day programme,200,ALLOWED,58.61
+BENIGN_261,Benign,Neutral,vitamin c boost orange grapefruit,200,ALLOWED,36.6
+BENIGN_262,Benign,Neutral,tropical mix mango papaya,200,ALLOWED,40.06
+BENIGN_263,Benign,Neutral,superfood blend spirulina,200,ALLOWED,40.09
+BENIGN_264,Benign,Neutral,protein smoothie banana peanut butter,200,ALLOWED,39.85
+BENIGN_265,Benign,Neutral,detox green juice cucumber mint,200,ALLOWED,27.85
+BENIGN_266,Benign,Neutral,immunity booster elderberry,200,ALLOWED,43.01
+BENIGN_267,Benign,Neutral,energy drink natural caffeine,200,ALLOWED,47.96
+BENIGN_268,Benign,Neutral,relaxation blend chamomile lavender,200,ALLOWED,51.11
+BENIGN_269,Benign,Neutral,kids juice no added sugar,200,ALLOWED,44.78
+BENIGN_270,Benign,Neutral,organic certified apple juice,200,ALLOWED,54.44
+BENIGN_271,Benign,Neutral,raw cold pressed beetroot,200,ALLOWED,52.38
+BENIGN_272,Benign,Neutral,seasonal special pumpkin spice,200,ALLOWED,33.74
+BENIGN_273,Benign,Neutral,limited edition christmas blend,200,ALLOWED,22.82
+BENIGN_274,Benign,Neutral,new flavour launch passion fruit,200,ALLOWED,54.35
+BENIGN_275,Benign,Neutral,bestseller classic orange,200,ALLOWED,49.4
+BENIGN_276,Benign,Neutral,vegan friendly all products,200,ALLOWED,61.92
+BENIGN_277,Benign,Neutral,gluten free certified range,200,ALLOWED,43.97
+BENIGN_278,Benign,Neutral,low sugar diabetic friendly options,200,ALLOWED,55.67
+BENIGN_279,Benign,Neutral,high protein post workout,200,ALLOWED,19.25
+BENIGN_280,Benign,Neutral,pre workout energy blend,200,ALLOWED,81.64
+BENIGN_281,Benign,Neutral,morning routine juice pack,200,ALLOWED,62.44
+BENIGN_282,Benign,Neutral,evening wind down herbal tea,200,ALLOWED,25.65
+BENIGN_283,Benign,Neutral,hydration pack electrolytes,200,ALLOWED,29.02
+BENIGN_284,Benign,Neutral,antioxidant rich blueberry acai,200,ALLOWED,71.7
+BENIGN_285,Benign,Neutral,omega 3 flaxseed smoothie,200,ALLOWED,23.8
+BENIGN_286,Benign,Neutral,probiotic kefir fruit blend,200,ALLOWED,38.89
+BENIGN_287,Benign,Neutral,gut health ginger turmeric,200,ALLOWED,56.42
+BENIGN_288,Benign,Neutral,brain boost blueberry walnut,200,ALLOWED,62.71
+BENIGN_289,Benign,Neutral,heart health pomegranate beet,200,ALLOWED,73.45
+BENIGN_290,Benign,Neutral,skin glow collagen berry blend,200,ALLOWED,69.92
+BENIGN_291,Benign,Neutral,hair growth biotin fruit mix,200,ALLOWED,70.72
+BENIGN_292,Benign,Neutral,bone health calcium enriched,200,ALLOWED,49.19
+BENIGN_293,Benign,Neutral,eye health carrot bilberry,200,ALLOWED,49.06
+BENIGN_294,Benign,Neutral,stress relief adaptogen blend,200,ALLOWED,27.15
+BENIGN_295,Benign,Neutral,focus blend lion's mane mushroom,500,ALLOWED,61.68
+BENIGN_296,Benign,Neutral,sleep blend magnesium cherry,200,ALLOWED,66.75
+BENIGN_297,Benign,Neutral,mood boost serotonin support,200,ALLOWED,46.95
+BENIGN_298,Benign,Neutral,weight loss metabolism boost,200,ALLOWED,33.19
+BENIGN_299,Benign,Neutral,digestion aid pineapple papaya,200,ALLOWED,35.84
+BENIGN_300,Benign,Neutral,acai berry antioxidant smoothie,200,ALLOWED,36.94
+BENIGN_301,Benign,Neutral,aloe vera digestive health drink,200,ALLOWED,28.36
+BENIGN_302,Benign,Neutral,turmeric golden milk blend,200,ALLOWED,46.26
+BENIGN_303,Benign,Neutral,matcha green tea latte mix,200,ALLOWED,39.81
+BENIGN_304,Benign,Neutral,kombucha probiotic range,200,ALLOWED,33.15
+BENIGN_305,Benign,Neutral,kefir milk protein blend,200,ALLOWED,43.81
+BENIGN_306,Benign,Neutral,coconut water electrolyte drink,200,ALLOWED,57.36
+BENIGN_307,Benign,Neutral,birch water natural hydration,200,ALLOWED,77.39
+BENIGN_308,Benign,Neutral,maple water antioxidant,200,ALLOWED,60.27
+BENIGN_309,Benign,Neutral,cactus water hydration,200,ALLOWED,67.02
+BENIGN_310,Benign,Neutral,hemp seed protein smoothie,200,ALLOWED,67.97
+BENIGN_311,Benign,Neutral,chia seed omega blend,200,ALLOWED,80.69
+BENIGN_312,Benign,Neutral,spirulina superfood shot,200,ALLOWED,31.05
+BENIGN_313,Benign,Neutral,wheatgrass detox shot,200,ALLOWED,36.76
+BENIGN_314,Benign,Neutral,moringa leaf green powder,200,ALLOWED,70.13
+BENIGN_315,Benign,Neutral,maca root energy blend,200,ALLOWED,36.63
+BENIGN_316,Benign,Neutral,ashwagandha stress support,200,ALLOWED,81.23
+BENIGN_317,Benign,Neutral,rhodiola fatigue fighter,200,ALLOWED,79.2
+BENIGN_318,Benign,Neutral,holy basil adaptogen blend,200,ALLOWED,37.61
+BENIGN_319,Benign,Neutral,reishi mushroom immunity,200,ALLOWED,86.94
+BENIGN_320,Benign,Neutral,chaga mushroom antioxidant,200,ALLOWED,70.19
+BENIGN_321,Benign,Neutral,turkey tail gut health,200,ALLOWED,55.42
+BENIGN_322,Benign,Neutral,cordyceps energy performance,200,ALLOWED,58.42
+BENIGN_323,Benign,Neutral,noni fruit tropical blend,200,ALLOWED,62.65
+BENIGN_324,Benign,Neutral,mangosteen antioxidant juice,200,ALLOWED,67.13
+BENIGN_325,Benign,Neutral,sea buckthorn vitamin C,200,ALLOWED,49.55
+BENIGN_326,Benign,Neutral,black elderberry immunity,200,ALLOWED,48.31
+BENIGN_327,Benign,Neutral,rosehip vitamin C shot,200,ALLOWED,48.25
+BENIGN_328,Benign,Neutral,hibiscus flower antioxidant,200,ALLOWED,46.67
+BENIGN_329,Benign,Neutral,baobab fibre fruit blend,200,ALLOWED,36.25
+BENIGN_330,Benign,Neutral,lucuma natural sweetener,200,ALLOWED,69.98
+BENIGN_331,Benign,Neutral,mesquite powder blend,200,ALLOWED,67.0
+BENIGN_332,Benign,Neutral,camu camu vitamin C boost,200,ALLOWED,66.82
+BENIGN_333,Benign,Neutral,amla gooseberry immunity,200,ALLOWED,29.31
+BENIGN_334,Benign,Neutral,triphala digestive blend,200,ALLOWED,54.79
+BENIGN_335,Benign,Neutral,shatavari womens wellness,200,ALLOWED,60.31
+BENIGN_336,Benign,Neutral,ashwagandha mens wellness,200,ALLOWED,34.08
+BENIGN_337,Benign,Neutral,brahmi brain support blend,200,ALLOWED,75.52
+BENIGN_338,Benign,Neutral,tulsi holy basil blend,200,ALLOWED,70.23
+BENIGN_339,Benign,Neutral,neem detox support blend,200,ALLOWED,28.78
+BENIGN_340,Benign,Neutral,triphala gut cleanse,200,ALLOWED,47.72
+BENIGN_341,Benign,Neutral,giloy immunity booster,200,ALLOWED,47.33
+BENIGN_342,Benign,Neutral,guduchi liver support,200,ALLOWED,30.53
+BENIGN_343,Benign,Neutral,punarnava kidney support,200,ALLOWED,60.92
+BENIGN_344,Benign,Neutral,shatavari hormone balance,200,ALLOWED,66.8
+BENIGN_345,Benign,Neutral,vidarikanda energy support,200,ALLOWED,67.33
+BENIGN_346,Benign,Neutral,safed musli strength blend,200,ALLOWED,74.68
+BENIGN_347,Benign,Neutral,kaunch beej vitality blend,200,ALLOWED,73.75
+BENIGN_348,Benign,Neutral,shilajit mineral complex,200,ALLOWED,70.49
+BENIGN_349,Benign,Neutral,O'Brien family pack order,500,ALLOWED,72.93
+BENIGN_350,Benign,Neutral,D'Angelo premium subscription,500,ALLOWED,67.54
+BENIGN_351,Benign,Neutral,St. Mary's Road delivery address,500,ALLOWED,71.95
+BENIGN_352,Benign,Neutral,O'Connor billing details,500,ALLOWED,46.11
+BENIGN_353,Benign,Neutral,Mary O'Hara loyalty account,500,ALLOWED,46.07
+BENIGN_354,Benign,Neutral,Patrick O'Sullivan gift order,500,ALLOWED,36.02
+BENIGN_355,Benign,Neutral,Siobhan O'Neill referral,500,ALLOWED,20.99
+BENIGN_356,Benign,Neutral,Caitlin O'Reilly newsletter,500,ALLOWED,53.0
+BENIGN_357,Benign,Neutral,Brendan O'Shea corporate account,500,ALLOWED,68.91
+BENIGN_358,Benign,Neutral,Fionnuala O'Mahony student discount,500,ALLOWED,34.31
+BENIGN_359,Benign,Neutral,user.name@email.com newsletter,200,ALLOWED,55.29
+BENIGN_360,Benign,Neutral,first.last@company.co.uk invoice,200,ALLOWED,69.73
+BENIGN_361,Benign,Neutral,admin@juicebar.com contact,200,ALLOWED,56.44
+BENIGN_362,Benign,Neutral,support@freshpress.com query,200,ALLOWED,62.19
+BENIGN_363,Benign,Neutral,hello@organicjuice.net enquiry,200,ALLOWED,36.69
+BENIGN_364,Benign,Neutral,info@coldpress.co.uk wholesale,200,ALLOWED,36.7
+BENIGN_365,Benign,Neutral,orders@juiceclub.com bulk,200,ALLOWED,48.35
+BENIGN_366,Benign,Neutral,returns@freshfruit.com complaint,200,ALLOWED,50.6
+BENIGN_367,Benign,Neutral,feedback@smoothiebar.com review,200,ALLOWED,39.29
+BENIGN_368,Benign,Neutral,press@juicebrand.com media,200,ALLOWED,52.25
+BENIGN_369,Benign,Neutral,John Smith delivery note,200,ALLOWED,61.49
+BENIGN_370,Benign,Neutral,Jane Doe gift message,200,ALLOWED,47.49
+BENIGN_371,Benign,Neutral,Robert Johnson corporate order,200,ALLOWED,50.41
+BENIGN_372,Benign,Neutral,Sarah Williams personal trainer,200,ALLOWED,38.95
+BENIGN_373,Benign,Neutral,Michael Brown gym subscription,200,ALLOWED,34.43
+BENIGN_374,Benign,Neutral,Emma Davies nutritionist order,200,ALLOWED,50.18
+BENIGN_375,Benign,Neutral,James Wilson dietitian purchase,200,ALLOWED,64.12
+BENIGN_376,Benign,Neutral,Olivia Taylor wellness coach,200,ALLOWED,49.41
+BENIGN_377,Benign,Neutral,William Anderson sports team,200,ALLOWED,67.23
+BENIGN_378,Benign,Neutral,Isabella Thomas school canteen,200,ALLOWED,76.9
+BENIGN_379,Benign,Neutral,ref: ORDER#12345 query,200,ALLOWED,18.89
+BENIGN_380,Benign,Neutral,ref: INV#67890 dispute,200,ALLOWED,73.57
+BENIGN_381,Benign,Neutral,ref: RTN#11111 return,200,ALLOWED,44.01
+BENIGN_382,Benign,Neutral,ref: GFT#22222 gift card,200,ALLOWED,77.43
+BENIGN_383,Benign,Neutral,ref: SUB#33333 subscription,200,ALLOWED,57.59
+BENIGN_384,Benign,Neutral,ref: WHL#44444 wholesale,200,ALLOWED,59.3
+BENIGN_385,Benign,Neutral,ref: CRP#55555 corporate,200,ALLOWED,75.47
+BENIGN_386,Benign,Neutral,ref: PRO#66666 promotion,200,ALLOWED,62.66
+BENIGN_387,Benign,Neutral,ref: LYL#77777 loyalty,200,ALLOWED,55.9
+BENIGN_388,Benign,Neutral,ref: DLV#88888 delivery,200,ALLOWED,52.23
+BENIGN_389,Benign,Neutral,price: £4.99 per bottle,200,ALLOWED,68.63
+BENIGN_390,Benign,Neutral,price: £9.99 for two,200,ALLOWED,66.53
+BENIGN_391,Benign,Neutral,price: £14.99 bundle deal,200,ALLOWED,49.5
+BENIGN_392,Benign,Neutral,price: £24.99 weekly box,200,ALLOWED,65.08
+BENIGN_393,Benign,Neutral,price: £49.99 monthly subscription,200,ALLOWED,69.07
+BENIGN_394,Benign,Neutral,price: £2.50 single shot,200,ALLOWED,35.84
+BENIGN_395,Benign,Neutral,price: £7.99 family size,200,ALLOWED,71.17
+BENIGN_396,Benign,Neutral,price: £19.99 cleanse pack,200,ALLOWED,64.43
+BENIGN_397,Benign,Neutral,price: £34.99 superfood bundle,200,ALLOWED,53.66
+BENIGN_398,Benign,Neutral,price: £99.99 annual plan,200,ALLOWED,35.7
+BENIGN_399,Benign,Neutral,size: 250ml single serve,200,ALLOWED,15.17
+BENIGN_400,Benign,Neutral,size: 500ml standard bottle,200,ALLOWED,57.74
+BENIGN_401,Benign,Neutral,size: 750ml sharing bottle,200,ALLOWED,71.4
+BENIGN_402,Benign,Neutral,size: 1L family bottle,200,ALLOWED,55.5
+BENIGN_403,Benign,Neutral,size: 2L bulk container,200,ALLOWED,47.23
+BENIGN_404,Benign,Neutral,size: 60ml shot,200,ALLOWED,45.86
+BENIGN_405,Benign,Neutral,size: 330ml can,200,ALLOWED,29.8
+BENIGN_406,Benign,Neutral,size: 1.5L sports bottle,200,ALLOWED,56.13
+BENIGN_407,Benign,Neutral,size: 3L catering pack,200,ALLOWED,53.83
+BENIGN_408,Benign,Neutral,size: 5L wholesale drum,200,ALLOWED,66.13
+BENIGN_409,Benign,Neutral,5 stars highly recommended product,200,ALLOWED,47.34
+BENIGN_410,Benign,Neutral,4 stars great taste delivery slow,200,ALLOWED,60.29
+BENIGN_411,Benign,Neutral,3 stars average could be better,200,ALLOWED,52.35
+BENIGN_412,Benign,Neutral,2 stars not what I expected,200,ALLOWED,109.01
+BENIGN_413,Benign,Neutral,1 star arrived damaged,200,ALLOWED,64.68
+BENIGN_414,Benign,Neutral,I love this product it's amazing,500,ALLOWED,62.88
+BENIGN_415,Benign,Neutral,It's really good value for money,500,ALLOWED,62.56
+BENIGN_416,Benign,Neutral,Can't wait to order again next month,500,ALLOWED,62.82
+BENIGN_417,Benign,Neutral,Didn't arrive on time but worth wait,500,ALLOWED,72.01
+BENIGN_418,Benign,Neutral,Great taste would buy again definitely,200,ALLOWED,60.01
+BENIGN_419,Benign,Neutral,comments and feedback always welcome,200,ALLOWED,37.93
+BENIGN_420,Benign,Neutral,suggestions for new flavours invited,200,ALLOWED,36.14
+BENIGN_421,Benign,Neutral,The product and packaging are great,200,ALLOWED,23.56
+BENIGN_422,Benign,Neutral,address line 1 city county postcode,200,ALLOWED,61.54
+BENIGN_423,Benign,Neutral,flat 3b second floor apartment,200,ALLOWED,61.16
+BENIGN_424,Benign,Neutral,unit 7 industrial estate warehouse,200,ALLOWED,39.42
+BENIGN_425,Benign,Neutral,suite 400 office building business,200,ALLOWED,47.57
+BENIGN_426,Benign,Neutral,floor 2 shopping centre kiosk,200,ALLOWED,47.73
+BENIGN_427,Benign,Neutral,allergen info: contains nuts,200,ALLOWED,36.05
+BENIGN_428,Benign,Neutral,best before: see base of bottle,200,ALLOWED,42.01
+BENIGN_429,Benign,Neutral,store below 8 degrees celsius,200,ALLOWED,67.24
+BENIGN_430,Benign,Neutral,shake well before opening,200,ALLOWED,54.26
+BENIGN_431,Benign,Neutral,once opened consume within 3 days,200,ALLOWED,41.55
+BENIGN_432,Benign,Neutral,not suitable for under 1 year,200,ALLOWED,25.53
+BENIGN_433,Benign,Neutral,closed on bank holidays,200,ALLOWED,28.42
+BENIGN_434,Benign,Neutral,carbon neutral certified 2026,200,ALLOWED,51.86
+BENIGN_435,Benign,Neutral,B corp certified ethical brand,200,ALLOWED,52.06
+BENIGN_436,Benign,Neutral,soil association organic standard,200,ALLOWED,49.96
+BENIGN_437,Benign,Neutral,rainforest alliance certified fruit,200,ALLOWED,63.07
+BENIGN_438,Benign,Neutral,fairtrade sourced ingredients,200,ALLOWED,52.67
+BENIGN_439,Benign,Neutral,non GMO verified all products,200,ALLOWED,53.29
+BENIGN_440,Benign,Neutral,kosher certified juices,200,ALLOWED,74.13
+BENIGN_441,Benign,Neutral,halal certified production,200,ALLOWED,77.51
+BENIGN_442,Benign,Neutral,vegan society approved range,200,ALLOWED,64.36
+BENIGN_443,Benign,Neutral,vegetarian society approved,200,ALLOWED,53.48
+BENIGN_444,Benign,Neutral,NHS choices recommended hydration,200,ALLOWED,69.51
+BENIGN_445,Benign,Neutral,5 a day contribution one portion,200,ALLOWED,74.38
+BENIGN_446,Benign,Neutral,traffic light labelling green,200,ALLOWED,68.8
+BENIGN_447,Benign,Neutral,nutritional info per 100ml provided,200,ALLOWED,61.88
+BENIGN_448,Benign,Neutral,account number JB123456,200,ALLOWED,51.31
+BENIGN_449,Benign,Neutral,account holder since 2021,200,ALLOWED,71.9
+BENIGN_450,Benign,Neutral,account upgrade to premium,200,ALLOWED,64.97
+BENIGN_451,Benign,Neutral,account merge two profiles,200,ALLOWED,31.44
+BENIGN_452,Benign,Neutral,account verification email sent,200,ALLOWED,55.11
+BENIGN_453,Benign,Neutral,loyalty points balance check,200,ALLOWED,58.81
+BENIGN_454,Benign,Neutral,loyalty tier gold member,200,ALLOWED,25.86
+BENIGN_455,Benign,Neutral,loyalty reward redeem now,200,ALLOWED,38.04
+BENIGN_456,Benign,Neutral,loyalty scheme terms apply,200,ALLOWED,28.22
+BENIGN_457,Benign,Neutral,loyalty card replacement request,200,ALLOWED,47.09
+BENIGN_458,Benign,Neutral,subscription pause for holiday,200,ALLOWED,50.74
+BENIGN_459,Benign,Neutral,subscription resume on return,200,ALLOWED,31.87
+BENIGN_460,Benign,Neutral,subscription change frequency,200,ALLOWED,37.98
+BENIGN_461,Benign,Neutral,subscription cancel anytime,200,ALLOWED,29.09
+BENIGN_462,Benign,Neutral,subscription gift for friend,200,ALLOWED,64.59
+BENIGN_463,Benign,Neutral,voucher code HEALTH20 applied,200,ALLOWED,64.26
+BENIGN_464,Benign,Neutral,voucher expired please check date,200,ALLOWED,51.3
+BENIGN_465,Benign,Neutral,voucher single use per customer,200,ALLOWED,51.56
+BENIGN_466,Benign,Neutral,voucher not valid with other offers,200,ALLOWED,52.2
+BENIGN_467,Benign,Neutral,voucher minimum spend applies,200,ALLOWED,37.82
+BENIGN_468,Benign,Neutral,gift card balance £25 remaining,200,ALLOWED,41.64
+BENIGN_469,Benign,Neutral,gift card top up online,200,ALLOWED,42.35
+BENIGN_470,Benign,Neutral,gift card sent via email,200,ALLOWED,68.77
+BENIGN_471,Benign,Neutral,gift card physical card option,200,ALLOWED,71.69
+BENIGN_472,Benign,Neutral,gift card no expiry date,200,ALLOWED,57.46
+BENIGN_473,Benign,Neutral,corporate account invoice monthly,200,ALLOWED,26.23
+BENIGN_474,Benign,Neutral,corporate discount 15 percent,200,ALLOWED,68.54
+BENIGN_475,Benign,Neutral,corporate minimum order 50 units,200,ALLOWED,64.84
+BENIGN_476,Benign,Neutral,corporate delivery direct to office,200,ALLOWED,45.95
+BENIGN_477,Benign,Neutral,corporate branded packaging option,200,ALLOWED,47.67
+BENIGN_478,Benign,Neutral,wholesale price list request,200,ALLOWED,58.48
+BENIGN_479,Benign,Neutral,wholesale minimum order 100 units,200,ALLOWED,83.31
+BENIGN_480,Benign,Neutral,wholesale delivery lead time,200,ALLOWED,39.76
+BENIGN_481,Benign,Neutral,wholesale account application,200,ALLOWED,30.11
+BENIGN_482,Benign,Neutral,wholesale terms and conditions,200,ALLOWED,29.54
+BENIGN_483,Benign,Neutral,trade account setup required,200,ALLOWED,44.3
+BENIGN_484,Benign,Neutral,trade discount 20 percent,200,ALLOWED,58.02
+BENIGN_485,Benign,Neutral,trade credit terms 30 days,200,ALLOWED,52.21
+BENIGN_486,Benign,Neutral,trade show sample pack,200,ALLOWED,68.84
+BENIGN_487,Benign,Neutral,trade press kit available,200,ALLOWED,35.5
+BENIGN_488,Benign,Neutral,next day delivery order before 2pm,200,ALLOWED,37.83
+BENIGN_489,Benign,Neutral,standard delivery 3 to 5 days,200,ALLOWED,28.45
+BENIGN_490,Benign,Neutral,express delivery 1 to 2 days,200,ALLOWED,54.93
+BENIGN_491,Benign,Neutral,free delivery on orders over £30,200,ALLOWED,43.33
+BENIGN_492,Benign,Neutral,international delivery available,200,ALLOWED,33.16
+BENIGN_493,Benign,Neutral,tracked delivery service,200,ALLOWED,27.93
+BENIGN_494,Benign,Neutral,signed for delivery required,200,ALLOWED,27.72
+BENIGN_495,Benign,Neutral,safe place delivery instructions,200,ALLOWED,28.49
+BENIGN_496,Benign,Neutral,neighbour delivery authorised,200,ALLOWED,63.99
+BENIGN_497,Benign,Neutral,click and collect tomorrow,200,ALLOWED,44.35
+BENIGN_498,Benign,Neutral,same day delivery London only,200,ALLOWED,65.13
+BENIGN_499,Benign,Neutral,Sunday delivery available,200,ALLOWED,43.19
+BENIGN_500,Benign,Neutral,bank holiday delivery info,200,ALLOWED,36.68

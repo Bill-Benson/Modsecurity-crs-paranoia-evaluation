@@ -1,0 +1,205 @@
+Config,Query,Anomaly_Score,Rules_Fired
+PL2,' OR '1'='1,5,942100
+PL2,' OR '1'='1'--,5,942100
+PL2,' OR 1=1--,5,942100
+PL2,admin'--,5,942100
+PL2,' OR 'x'='x,5,942100
+PL2,1' OR '1'='1,5,942100
+PL2,' OR ''=',5,942100
+PL2,1 OR 1=1,5,942100
+PL2,' OR 1=1#,5,942100
+PL2,""" OR 1=1--",5,942100
+PL2,') OR ('1'='1,5,942100
+PL2,'; DROP TABLE users--,5,942100
+PL2,1'; DROP TABLE users--,5,942100
+PL2,' AND 1=1--,5,942100
+PL2,' AND 1=2--,5,942100
+PL2,' OR 1=1 ORDER BY 1--,5,942100
+PL2,' OR 'a'='a,5,942100
+PL2,1; SELECT * FROM users--,10,"932115, 942360"
+PL2,' OR 1=1 LIMIT 1--,5,942100
+PL2,1 AND 1=1,5,942100
+PL2,1 AND 1=2,5,942100
+PL2,1' AND '1'='1,5,942100
+PL2,1' AND '1'='2,5,942100
+PL2,"' AND SUBSTRING(username,1,1)='a'--",5,942100
+PL2,' AND LENGTH(password)>5--,5,942100
+PL2,"1 AND SUBSTRING(@@version,1,1)='5'",5,942100
+PL2,"' AND ASCII(SUBSTRING((SELECT database()),1,1))>64--",15,"942100, 942140, 942190"
+PL2,' AND 1=(SELECT 1 FROM users WHERE username='admin')--,5,942100
+PL2,1' AND (SELECT COUNT(*) FROM users)>0-- -,5,942100
+PL2,' AND (SELECT 1 FROM information_schema.tables WHERE table_name='users')=1--,15,"942100, 942140, 942190"
+PL2,"' AND IF(1=1,1,2)=1--",10,"942100, 942230"
+PL2,1 AND EXISTS(SELECT * FROM users WHERE username='admin'),5,942100
+PL2,' AND NOT EXISTS(SELECT * FROM users WHERE username='nonexistent')--,5,942100
+PL2,1' AND (SELECT 1 FROM users WHERE username LIKE 'adm%')=1--,8,"920220, 942100"
+PL2,' AND (SELECT 1)=1--,5,942100
+PL2,' AND 2>1--,5,942100
+PL2,1 AND (SELECT COUNT(*)>0 FROM users),5,942100
+PL2,' UNION SELECT NULL--,15,"942100, 942190, 942360"
+PL2,"' UNION SELECT NULL,NULL--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT NULL,NULL,NULL--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT 1,2,3--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT username,password,3 FROM users--",20,"942100, 942190, 942270, 942360"
+PL2,"' UNION SELECT table_name,2,3 FROM information_schema.tables--",25,"942100, 942140, 942190, 942270, 942360"
+PL2,"' UNION SELECT column_name,2,3 FROM information_schema.columns WHERE table_name=",25,"942100, 942140, 942190, 942270, 942360"
+PL2,1 UNION SELECT NULL--,15,"942100, 942190, 942360"
+PL2,1 UNION ALL SELECT NULL--,15,"942100, 942190, 942360"
+PL2,"1' UNION SELECT @@version,NULL--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE",25,"942100, 942140, 942190, 942270, 942360"
+PL2,"' UNION SELECT 1,group_concat(username,0x3a,password),3 FROM users--",20,"942100, 942190, 942270, 942360"
+PL2,"1 UNION SELECT NULL,NULL-- -",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT load_file('/etc/passwd'),2,3--",25,"930120, 932160, 942100, 942190, 942360"
+PL2,"1 UNION ALL SELECT 1,schema_name,3 FROM information_schema.schemata--",25,"942100, 942140, 942190, 942270, 942360"
+PL2,"' UNION SELECT NULL,version(),NULL--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT 1,2,3 FROM information_schema.tables LIMIT 1--",25,"942100, 942140, 942190, 942270, 942360"
+PL2,"' UNION SELECT user(),2,3--",15,"942100, 942190, 942360"
+PL2,"' UNION SELECT NULL,table_name,NULL FROM information_schema.tables--",25,"942100, 942140, 942190, 942270, 942360"
+PL2,"1 UNION SELECT 1,2,@@datadir--",15,"942100, 942190, 942360"
+PL2,'; WAITFOR DELAY '0:0:5'--,20,"932115, 942100, 942240, 942280"
+PL2,'; IF(1=1) WAITFOR DELAY '0:0:5'--,20,"942100, 942170, 942230, 942280"
+PL2,1; WAITFOR DELAY '0:0:5'--,15,"932115, 942100, 942280"
+PL2,'; SELECT SLEEP(5)--,35,"932115, 942100, 942160, 942170, 942190, 942350, 942360"
+PL2,1 AND SLEEP(5),10,"942100, 942160"
+PL2,' AND SLEEP(5)--,10,"942100, 942160"
+PL2,1' AND SLEEP(5)-- -,10,"942100, 942160"
+PL2,' OR SLEEP(5)--,10,"942100, 942160"
+PL2,1 OR SLEEP(5),10,"942100, 942160"
+PL2,' AND (SELECT * FROM (SELECT(SLEEP(5)))a)--,10,"942100, 942160"
+PL2,1 AND (SELECT * FROM (SELECT(SLEEP(5)))a)--,10,"942100, 942160"
+PL2,' OR (SELECT * FROM (SELECT(SLEEP(5)))a)--,10,"942100, 942160"
+PL2,"' AND IF(1=1,SLEEP(5),0)--",15,"942100, 942160, 942230"
+PL2,"1 AND IF(1=1,SLEEP(5),0)",15,"942100, 942160, 942230"
+PL2,"' OR IF(1=1,SLEEP(5),0)--",15,"942100, 942160, 942230"
+PL2,'; SELECT pg_sleep(5)--,35,"932115, 942100, 942160, 942190, 942280, 942350, 942360"
+PL2,1; SELECT pg_sleep(5),30,"932115, 942100, 942160, 942280, 942350, 942360"
+PL2,'; IF(1=1) SELECT SLEEP(5)--,20,"942100, 942160, 942170, 942230"
+PL2,'; SELECT 1 WHERE 1=1 AND SLEEP(5)--,25,"932115, 942100, 942160, 942190, 942360"
+PL2,' AND 1=(SELECT 1 FROM (SELECT SLEEP(5))a)--,15,"942100, 942160, 942170"
+PL2,'/**/OR/**/1/**/=/**/1--,5,942100
+PL2,'%09OR%091=1--,5,942100
+PL2,'/*!50000OR*/1=1--,10,"942100, 942500"
+PL2,'||1=1--,5,942100
+PL2,' OR%0a1=1--,5,942100
+PL2,' OR 1 LIKE 1--,5,942100
+PL2,' OR 1 REGEXP 1--,5,942100
+PL2,' OR 1 BETWEEN 0 AND 2--,5,942100
+PL2,"' OR GREATEST(1,0)=1--",5,942100
+PL2,"' OR ELT(1,1)=1--",5,942100
+PL2,"' /*!UNION*/ /*!SELECT*/ 1,2--",10,"942100, 942500"
+PL2,'+OR+1=1--,10,"942100, 942100"
+PL2,"' OR COALESCE(NULL,1)=1--",5,942100
+PL2,' AND CASE WHEN (1=1) THEN 1 ELSE 0 END=1--,5,942100
+PL2,"' OR 2 IN (1,2)--",5,942100
+PL2,'||(SELECT 1 FROM dual WHERE 1=1)||',15,"932115, 942100, 942360"
+PL2,' OR (SELECT 1 FROM (SELECT 1)a)=1--,5,942100
+PL2,' OR ASCII(1)=49--,5,942100
+PL2,<script>alert(1)</script>,15,"941100, 941110, 941160"
+PL2,<script>alert('XSS')</script>,15,"941100, 941110, 941160"
+PL2,<script>alert(document.cookie)</script>,20,"941100, 941110, 941160, 941180"
+PL2,<img src=x onerror=alert(1)>,15,"941100, 941120, 941160"
+PL2,<img src=x onerror=alert('XSS')>,15,"941100, 941120, 941160"
+PL2,<svg onload=alert(1)>,15,"941100, 941120, 941160"
+PL2,<body onload=alert(1)>,15,"941100, 941120, 941160"
+PL2,<iframe src=javascript:alert(1)>,25,"941100, 941140, 941160, 941170, 941210"
+PL2,"""><script>alert(1)</script>",15,"941100, 941110, 941160"
+PL2,'><script>alert(1)</script>,15,"941100, 941110, 941160"
+PL2,<script>alert(1)//,15,"941100, 941110, 941160"
+PL2,<ScRiPt>alert(1)</ScRiPt>,15,"941100, 941110, 941160"
+PL2,<SCRIPT>alert(1)</SCRIPT>,15,"941100, 941110, 941160"
+PL2,"<script type=""text/javascript"">alert(1)</script>",15,"941100, 941110, 941160"
+PL2,"<a href=""javascript:alert(1)"">click</a>",20,"941100, 941140, 941170, 941210"
+PL2,"<div onmouseover=""alert(1)"">hover</div>",15,"941100, 941120, 941160"
+PL2,"<input type=""text"" onfocus=""alert(1)"" autofocus>",15,"941100, 941120, 941160"
+PL2,<svg><script>alert(1)</script></svg>,15,"941100, 941110, 941160"
+PL2,<details open ontoggle=alert(1)>,10,"941100, 941120"
+PL2,</script><script>alert(1)</script>,15,"941100, 941110, 941160"
+PL2,<img src=x onerror=alert`1`>,15,"941100, 941120, 941160"
+PL2,<body onresize=alert(1)>,15,"941100, 941120, 941160"
+PL2,<body onhashchange=alert(1)><a href=#x>trigger</a>,15,"941100, 941120, 941160"
+PL2,<body onfullscreenchange=alert(1)>,10,"941120, 941160"
+PL2,<input onfocus=alert(1) autofocus>,15,"941100, 941120, 941160"
+PL2,<select onfocus=alert(1) autofocus>,20,"941100, 941120, 941160, 942360"
+PL2,<textarea onfocus=alert(1) autofocus>,15,"941100, 941120, 941160"
+PL2,<video onloadstart=alert(1)><source></video>,15,"941100, 941120, 941160"
+PL2,<audio onloadstart=alert(1)><source></audio>,15,"941100, 941120, 941160"
+PL2,<details ontoggle=alert(1) open>,10,"941100, 941120"
+PL2,<marquee onstart=alert(1)>,15,"941100, 941120, 941160"
+PL2,<div onmouseenter=alert(1)>hover</div>,15,"941100, 941120, 941160"
+PL2,<form onsubmit=alert(1)><input type=submit></form>,20,"941100, 941120, 941140, 941160"
+PL2,<button onclick=alert(1)>click</button>,15,"941100, 941120, 941160"
+PL2,<object onerror=alert(1)>,20,"941100, 941120, 941140, 941160"
+PL2,<body onpageshow=alert(1)>,15,"941100, 941120, 941160"
+PL2,<svg><animate onbegin=alert(1) attributeName=x dur=1s>,15,"941100, 941120, 941160"
+PL2,<svg><set onbegin=alert(1) attributeName=x>,15,"941100, 941120, 941160"
+PL2,<iframe onload=alert(1) src=about:blank>,15,"941100, 941120, 941160"
+PL2,<link rel=stylesheet onerror=alert(1) href=//doesnotexist.invalid>,20,"941100, 941120, 941160, 941270"
+PL2,<scr<script>ipt>alert(1)</scr</script>ipt>,10,"941110, 941160"
+PL2,"<img src=""x"" onerror=""&#97;lert(1)"">",15,"941100, 941120, 941160"
+PL2,<svg><script>alert&lpar;1&rpar;</script></svg>,15,"941100, 941110, 941160"
+PL2,<img src=x onERROR=alert(1)>,15,"941100, 941120, 941160"
+PL2,<IMG SRC=x OnErRoR=alert(1)>,15,"941100, 941120, 941160"
+PL2,<a href=j&#97;vascript:alert(1)>click</a>,20,"941100, 941140, 941170, 941210"
+PL2,"<a href=""jav&#x09;ascript:alert(1)"">click</a>",10,"941140, 941210"
+PL2,"<a href=""jav&#x0A;ascript:alert(1)"">click</a>",10,"941100, 941140"
+PL2,"<a href=""jav&#x0D;ascript:alert(1)"">click</a>",5,941140
+PL2,<form><button formaction=javascript:alert(1)>click</button></form>,30,"941100, 941130, 941140, 941160, 941170, 941210"
+PL2,<embed src=javascript:alert(1)>,30,"941100, 941140, 941160, 941170, 941210, 941230"
+PL2,<svg><a xlink:href=javascript:alert(1)><rect width=100 height=100></a></svg>,30,"941100, 941130, 941140, 941160, 941170, 941210"
+PL2,<math href=javascript:alert(1)>click</math>,20,"941100, 941140, 941170, 941210"
+PL2,"<img """"""><script>alert(1)</script>"">",15,"941100, 941110, 941160"
+PL2,<script>alert(1)<!--,20,"941100, 941110, 941160, 941180"
+PL2,"<!--<img src=""--><img src=x onerror=alert(1)>",20,"941100, 941120, 941160, 941180"
+PL2,"<meta http-equiv=""refresh"" content=""0;url=javascript:alert(1)"">",35,"921130, 941100, 941140, 941160, 941170, 941210, 941250"
+PL2,<script>window.onerror=alert;throw 1</script>,15,"941100, 941110, 941160"
+PL2,<img src=x onerror=location='javascript:alert(1)'>,30,"941100, 941120, 941140, 941160, 941170, 941210"
+PL2,<input autofocus onfocus=alert(1)//>,15,"941100, 941120, 941160"
+PL2,<a href=&#x6A;avascript:alert(1)>click</a>,20,"941100, 941140, 941170, 941210"
+PL2,<a href=jav&#x61;script:alert(1)>click</a>,20,"941100, 941140, 941170, 941210"
+PL2,<a href=jav&#9;ascript:alert(1)>click</a>,10,"941140, 941210"
+PL2,<a href=jav&#10;ascript:alert(1)>click</a>,5,941140
+PL2,<a href=jav&#12;ascript:alert(1)>click</a>,5,941140
+PL2,<img src=x onerror=&#x61;lert(1)>,15,"941100, 941120, 941160"
+PL2,<img src=x onerror=&#0000097;lert(1)>,15,"941100, 941120, 941160"
+PL2,<img src=x onerror=alert&#x28;1&#x29;>,15,"941100, 941120, 941160"
+PL2,<img src=x onerror=alert(1)	>,15,"941100, 941120, 941160"
+PL2,<img src=`x` onerror=`alert(1)`>,15,"941100, 941120, 941160"
+PL2,<script>//%0aalert(1)</script>,15,"941100, 941110, 941160"
+PL2,<script>alert(1//)</script>,15,"941100, 941110, 941160"
+PL2,<script>alert`1`</script>,15,"941100, 941110, 941160"
+PL2,<iframe src=jAvAsCrIpT:alert(1)>,25,"941100, 941140, 941160, 941170, 941210"
+PL2,<img src=x onerror=window.alert(1)>,15,"941100, 941120, 941160"
+PL2,<img src=x onerror=(alert)(1)>,20,"933210, 941100, 941120, 941160"
+PL2,<svg onload=alert&#40;1&#41;>,15,"941100, 941120, 941160"
+PL2,<script>/*%0a*/alert(1)</script>,15,"941100, 941110, 941160"
+PL2,<img src=x onerror=eval('\x61\x6c\x65\x72\x74\x28\x31\x29')>,25,"933160, 934100, 941100, 941120, 941160"
+PL2,<math><mtext></table><img src=x onerror=alert(1)>,15,"941100, 941120, 941160"
+PL2,"<noscript><p title=""</noscript><img src=x onerror=alert(1)>"">",15,"941100, 941120, 941160"
+PL2,<svg><desc><![CDATA[</desc><script>alert(1)</script>]]>,20,"941100, 941110, 941160, 941180"
+PL2,"<form><math><mtext></form><form><mglyph><svg><mtext><textarea><path id=""</textar",20,"941100, 941120, 941140, 941160"
+PL2,"<svg><foreignObject><div xmlns=""http://www.w3.org/1999/xhtml""><script>alert(1)</",20,"941100, 941110, 941130, 941160"
+PL2,"<xmp><p title=""</xmp><img src=x onerror=alert(1)>"">",15,"941100, 941120, 941160"
+PL2,<template id=x><script>alert(1)</script></template><script>document.body.appendC,15,"941100, 941110, 941160"
+PL2,"<iframe srcdoc=""&lt;script&gt;top.alert(1)&lt;/script&gt;"">",25,"932105, 941100, 941110, 941160, 942100"
+PL2,<script>with(window)alert(1)</script>,15,"941100, 941110, 941160"
+PL2,<svg><set attributeName=onload to=alert(1)>,10,"941100, 941160"
+PL2,<svg><animatetransform onbegin=alert(1) attributeName=transform>,15,"941100, 941120, 941160"
+PL2,"<script>Object.defineProperty(window,""x"",{get:function(){alert(1)}});x</script>",20,"934100, 941100, 941110, 941160"
+PL2,<frameset onload=alert(1)>,15,"941100, 941120, 941160"
+PL2,<input name=attributes><form><button formaction=javascript:alert(1)>,30,"941100, 941130, 941140, 941160, 941170, 941210"
+PL2,<script>({get x(){alert(1)}}).x</script>,20,"932130, 941100, 941110, 941160"
+PL2,"<script>Function.prototype.call.call(alert,window,1)</script>",15,"941100, 941110, 941160"
+PL2,"<script>Proxy&&new Proxy({},{get(){alert(1)}})+''</script>",15,"941100, 941110, 941160"
+PL2,"<style>@keyframes x{}</style><p style=""animation:x 1s"" onanimationstart=alert(1)",25,"941100, 941120, 941140, 941160, 941190"
+PL2,<details open ontoggle=alert(1) id=x><summary>x</summary></details>,10,"941100, 941120"
+PL2,"<svg><use href=""data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg",25,"941100, 941110, 941130, 941160, 941170"
+PL2,select from our range of smoothies,5,942100
+PL2,exec chef recommended juices,5,932150
+PL2,eval the best juice for you,5,932150
+PL2,eval your health goals with us,5,932150
+PL2,eval nutrition needs calculator,5,932150
+PL2,100% natural no artificial additives,3,920220
+PL2,99% fat free low calorie option,3,920220
+PL2,50% off sale this weekend only,3,920220
+PL2,20% extra free limited time,3,920220
+PL2,recyclable packaging 100%,3,920220
