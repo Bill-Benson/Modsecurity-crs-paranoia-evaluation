@@ -103,6 +103,14 @@ All bypasses represent **complete signature absence** (not threshold-dependent n
 
 ---
 
+## Related Work
+
+The WAF logs from this experiment were subsequently ingested into **Microsoft Sentinel** to build detection-engineering content on top of the research — including a KQL `leftanti`-join hunt that independently re-discovers the `SQLI_33` boolean-blind bypass as an `HTTP 200` request with no matching WAF rule hit.
+
+➡️ **[WAF Bypass Detection in Microsoft Sentinel](https://github.com/Bill-Benson/sentinel-waf-detection)** — operational SIEM follow-on to this dissertation.
+
+---
+
 ## References
 
 Payloads derived from publicly documented sources:
