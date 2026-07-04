@@ -10,7 +10,7 @@ Submitted as an MSc Cybersecurity dissertation at Wrexham University, April 2026
 
 Raising the CRS paranoia level from PL1 to PL2 produced **zero improvement in detection rate** (TPR remained 97.0%) while **doubling the false positive rate** from 1.0% to 2.0%.
 
-Audit log analysis confirmed that no PL2-specific rules fired in either configuration. All 37 active rules carried `paranoia-level/1` tags. Every difference between configurations was attributable solely to **threshold arithmetic**, not additional detection logic — a mechanism termed the *threshold-not-rules* effect.
+Audit log analysis confirmed that no PL2-specific rules fired in either configuration. All 37 active rules carried `paranoia-level/1` tags. Every difference between configurations was attributable solely to **threshold arithmetic**, not additional detection logic, a mechanism termed the *threshold-not-rules* effect.
 
 ---
 
@@ -105,9 +105,9 @@ All bypasses represent **complete signature absence** (not threshold-dependent n
 
 ## Related Work
 
-The WAF logs from this experiment were subsequently ingested into **Microsoft Sentinel** to build detection-engineering content on top of the research — including a KQL `leftanti`-join hunt that independently re-discovers the `SQLI_33` boolean-blind bypass as an `HTTP 200` request with no matching WAF rule hit.
+The WAF logs from this experiment were subsequently ingested into **Microsoft Sentinel** to build detection-engineering content on top of the research, including a KQL `leftanti`-join hunt that independently re-discovers the `SQLI_33` boolean-blind bypass as an `HTTP 200` request with no matching WAF rule hit.
 
-➡️ **[WAF Bypass Detection in Microsoft Sentinel](https://github.com/Bill-Benson/sentinel-waf-detection)** — operational SIEM follow-on to this dissertation.
+➡️ **[WAF Bypass Detection in Microsoft Sentinel](https://github.com/Bill-Benson/sentinel-waf-detection)**: operational SIEM follow-on to this dissertation.
 
 ---
 
